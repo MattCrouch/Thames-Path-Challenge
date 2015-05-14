@@ -1,0 +1,323 @@
+@import "includes/settings";
+@import "includes/meyer-reset";
+
+@font-face {
+    font-family: 'Florence Sans';
+    src: url('../fonts/florsn33-webfont.eot');
+    src: url('../fonts/florsn33-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/florsn33-webfont.woff2') format('woff2'),
+         url('../fonts/florsn33-webfont.woff') format('woff'),
+         url('../fonts/florsn33-webfont.ttf') format('truetype'),
+         url('../fonts/florsn33-webfont.svg#florencesans_blackregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	//text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+html {
+	font-size: $base-size;
+	background-color: $background-color;
+	font-family: "Lato", "Helvetica", "Arial", sans-serif;
+}
+
+h1, h2, h3, section.hero div.date {
+	font-family: "Florence Sans", "Helvetica", "Arial", sans-serif;
+	text-transform: uppercase;
+}
+
+h1, h2 {
+	font-size: 2.5rem;
+	color: $accent1;
+}
+
+h1, section.hero div.date {
+	color: $header-color;
+}
+
+section, section.hero > div {
+	text-align: center;
+	padding: 2rem;
+}
+
+a {
+	color: inherit;
+}
+
+p {
+	margin: 1em 0;
+	line-height: $line-height;
+}
+
+span {
+	line-height: $line-height;
+}
+
+sup {
+	vertical-align: super;
+	font-size: 0.5em;
+}
+
+em {
+	font-style: italic;
+}
+
+.wrapper {
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+a.button {
+	color: $header-color;
+	font-weight: bold;
+	padding: 0.5rem 2rem;
+	text-decoration: none;
+	border: 5px solid $header-color;
+	display:inline-block;
+
+	&:hover {
+		color: $accent2;
+		background-color: $header-color;
+	}
+}
+
+.clear {
+	clear: both;
+}
+
+section.hero {
+	position: relative;
+	background-color: $accent1;
+	min-height: 90vh;
+	//min-height: 20 * $base-size;
+	background-image: url("../images/hero-image.jpg");
+	background-size: cover;
+	background-position: center;
+
+	> div {
+		display:block;
+		left: 0;
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+
+		> div {
+			margin-top: 2rem;
+		}
+	}
+
+	a.button {
+		color: $header-color;
+		font-size: 1.5rem;
+
+		&:hover {
+			color: $accent2;
+			background-color: $header-color;
+		}
+	}
+
+	span.tpc {
+		display: block;
+		font-size: 4rem;
+		color: $accent2;
+	}
+
+	div.date {
+		font-size: 2rem;
+		margin: 1rem 0;
+	}
+}
+
+section.diabetes-uk {
+	background-color: rgba($accent2, 0.5);
+
+	div.logo {
+		padding-top: 2rem;
+
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+section.the-challenge {
+	img {
+		width: 100%;
+	}
+}
+
+section.diabetes-uk ul.aims, section.the-challenge ul.facts {
+	text-align: left;
+	padding-top: 2rem;
+
+	li {
+		display: inline-block;
+		width: 33%;
+		vertical-align: top;
+
+		img {
+			float: left;
+			border: 0.5rem solid $accent1;
+			border-radius: 100px;
+			margin: 0 1em 1em 1em;
+			width: 25%;
+			height: 25%;
+			background-color: $header-color;
+		}
+
+		&:first-child img {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			float: right;
+		}
+
+		p {
+			margin: 0;
+			padding-bottom: 1em;
+			overflow: hidden;
+		}
+	}
+}
+
+section.donate {
+	background-color: rgba($accent2, 0.5);
+	&:after {
+		content: " ";
+		display: block;
+		height: 0;
+		clear: both;
+	}
+
+	.description, .donate {
+		margin-top: 1rem;
+		float: left;
+		width: 50%;
+	}
+
+	.description {
+		img {
+			width: 50%;
+		}
+	}
+
+	.donate {
+		> div {
+			padding: 1rem 0;	
+		}
+
+		.current-amount {
+			span.current, span.total {
+				font-size: 2rem;
+				font-weight: bold;
+
+				&:before {
+					content: "£";
+				}
+			}
+		}
+
+		.ways-to-donate {
+			.justgiving {
+				margin-top: 1rem;
+				display: block;
+
+				img {
+					width: 10rem;
+				}
+			}
+
+			span.text {
+				display: block;
+
+				span {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 950px) {
+	section.diabetes-uk ul.aims, section.the-challenge ul.facts {
+		img {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 675px) {
+	html {
+		font-size: $base-size * 1.1;
+	}
+
+	section, section.hero > div {
+		padding: 1rem;
+	}
+
+	section.diabetes-uk ul.aims, section.the-challenge ul.facts {
+		li, li:last-child {
+			display: block;
+			width: 100%;
+			text-align: center;
+			float: none;
+		}
+	}
+
+	h1, h2 {
+		font-size: 2rem;
+	}
+
+	section.hero {
+		height: auto;
+		display: block;
+		background-image: url("../images/hero-image-650px.jpg");
+		min-height: 0;
+
+		> div {
+			padding: 0;
+			display: block;
+			position: relative;
+			-webkit-transform: none;
+			transform: none;
+		}
+
+		span.tpc {
+			font-size: 2rem;
+		}
+
+		div.date {
+			font-size: 1rem;
+		}
+	}
+
+	section.donate {
+		.description, .donate {
+			float: none;
+			width: 100%;
+		}
+
+		.description {
+			img {
+				width: 75%;
+			}
+		}
+	}
+}
+
+@media (max-width: 450px) {
+	h1, h2 {
+		font-size: 1.25rem;
+	}
+
+	section.hero h1 {
+		font-size: 1rem;
+	}
+}

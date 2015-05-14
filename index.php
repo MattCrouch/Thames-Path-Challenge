@@ -31,15 +31,15 @@
 			</div>
 			<ul class="aims">
 				<li>
-					<img src="build/images/icons/icon-people.svg" alt="People"/>
+					<img src="build/images/icons/icon-people.svg" alt="People Icon"/>
 					<p>Over 3 million people in the UK are diagnosed with diabetes. There's an estimated half a million more who aren't even aware they have it.</p>
 				</li>
 				<li>
-					<img src="build/images/icons/icon-tape-measure.svg" alt="placeholder"/>
+					<img src="build/images/icons/icon-tape-measure.svg" alt="Tape Measure Icon"/>
 					<p>Diabetes can affect anyone. Common risk factors include those with a family history of diabetes, have high cholesterol or are physically inactive.</p>
 				</li>
 				<li>
-					<img src="build/images/icons/icon-diabetes-uk.svg" alt="placeholder"/>
+					<img src="build/images/icons/icon-diabetes-uk.svg" alt="Diabetes UK Logo"/>
 					<p>Diabetes UK aim to educate and inform people on the risks and warning signs of diabetes and hopefully manage it before problems arise.</p>
 				</li>
 			</ul>
@@ -55,15 +55,15 @@
 
 			<ul class="facts">
 				<li>
-					<img src="build/images/icons/icon-football-pitch.svg" alt="placeholder"/>
+					<img src="build/images/icons/icon-football-pitch.svg" alt="Football Pitch Icon"/>
 					<p>It's the equivalent of walking over 450 football pitches, a marathon and <em>a bit</em>, or from Putney Bridge to Runnymede. Funny, that.</p>
 				</li>
 				<li>
-					<img src="build/images/icons/icon-stopwatch.svg" alt="placeholder"/>
+					<img src="build/images/icons/icon-stopwatch.svg" alt="Stopwatch Icon"/>
 					<p>At an average page this should take just under 9 hours to complete. It could be some more if I can't stop taking photos along the way.</p>
 				</li>
 				<li>
-					<img src="build/images/icons/icon-pound.svg" alt="placeholder"/>
+					<img src="build/images/icons/icon-pound.svg" alt="Pound Sign Icon"/>
 					<p>Over 4000 people will take part in the Thames Path Challenge this year. All these aim to raise £2 million for charities and good causes across the UK.</p>
 				</li>
 			</ul>
@@ -84,7 +84,7 @@
 				<div class="ways-to-donate">
 					<h3>Ways to Donate</h3>
 					<div class="justgiving">
-						<a href='http://www.justgiving.com/matt-crouch-tpc' title='JustGiving - Sponsor me now!' target='_blank'><img src='/build/images/justgiving.png' alt='JustGiving - Sponsor me now!' /></a>
+						<a href='http://www.justgiving.com/matt-crouch-tpc' title='JustGiving - Sponsor me now!' target='_blank'><img src='build/images/justgiving.png' alt='JustGiving - Sponsor me now!' /></a>
 					</div>
 					
 					<span>or</span>

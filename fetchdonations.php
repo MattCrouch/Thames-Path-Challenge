@@ -41,10 +41,12 @@ $doUpdate = false;
 
 //Check if we need to do an update to our data
 foreach($values as $value) {
-	$updateTime = clone $value['last_updated'];
-	$updateTime->add($dateInterval);
+	if($value['last_updated']) {
+		$updateTime = clone $value['last_updated'];
+		$updateTime->add($dateInterval);
+	}
 
-	if($updateTime <= $now) {
+	if(!$value['last_updated'] || $updateTime <= $now) {
 		$doUpdate = true;
 		break;
 	}

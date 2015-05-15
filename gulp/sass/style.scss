@@ -92,8 +92,8 @@ a.button {
 section.hero {
 	position: relative;
 	background-color: $accent1;
-	min-height: 90vh;
-	//min-height: 20 * $base-size;
+	height: 90vh;
+	min-height: 20 * $base-size;
 	background-image: url("../images/hero-image.jpg");
 	background-size: cover;
 	background-position: center;
@@ -217,9 +217,15 @@ section.donate {
 			span.current, span.total {
 				font-size: 2rem;
 				font-weight: bold;
+				opacity: 1;				
+				transition: all 1s;
 
 				&:before {
 					content: "£";
+				}
+
+				&.loading {
+					opacity: 0.25;
 				}
 			}
 		}

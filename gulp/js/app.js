@@ -7,11 +7,14 @@ $( document ).ready(function() {
 			url: "fetchdonations.php",
 			type: "GET",
 			success: function(data) {
+				current.removeClass("loading");
+				total.removeClass("loading");
+
 				current.text("0.00").data('amount', "0.00").data('total', parseFloat(data.totalRaised).toFixed(2));
 				total.text(data.target);
 
 				var ms = 1000;
-				var steps = 10;
+				var steps = 25;
 				var stepLength = ms / steps;
 				var stepAmount = data.totalRaised / steps;
 

@@ -3,6 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
+	<meta property="og:title" content="Matt takes on the Thames Path Challenge" />
+	<meta property="og:site_name" content="MattCrouch.net"/>
+	<meta property="og:url" content="http://www.mattcrouch.net/tpc" />
+	<meta property="article:author" content="https://www.facebook.com/matt.crouch" />
+	<meta property="og:description" content="I'm taking on the Thames Path Challenge - walking 50km along the Thames to raise money for Diabetes UK." />
+	<meta property="og:image" content="http://mattcrouch.net/tpc/build/images/diabetes-uk-logo.png" />
 	<title>Matt takes on the Thames Path Challenge</title>
 	<link rel="stylesheet" type="text/css" href="build/css/style.css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -49,7 +55,7 @@
 	<section class="the-challenge">
 		<div class="wrapper">
 			<h2>The Challenge</h2>
-			<p>The challenge involves walking 50km along the River Thames, from Putney Bridge to Runnymede.</p>
+			<p>The <a href="http://www.thamespathchallenge.com/" title="Thames Path Challenge website">Thames Path Challenge</a> involves walking 50km along the River Thames, from Putney Bridge to Runnymede.</p>
 
 			<img src="build/images/putney-runnymede.svg" alt="Putney to Runnymede Path"/>
 
@@ -78,7 +84,7 @@
 			<div class="donate">
 				<div class="current-amount">
 					<h3>Amount Raised</h3>
-					<span class="current">0.00</span> of <span class="total">0.00</span>
+					<span class="current loading">0.00</span> of <span class="total loading">0.00</span>
 				</div>
 
 				<div class="ways-to-donate">

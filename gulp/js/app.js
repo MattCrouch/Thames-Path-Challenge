@@ -49,7 +49,7 @@ $( document ).ready(function() {
 		map();
 	}
 
-	fetchDonations(); //Comment out during testing to save needless requests
+	//fetchDonations(); //Comment out during testing to save needless requests
 });
 
 var map = function() {
@@ -66,6 +66,12 @@ var map = function() {
 			lng: -0.213112,
 			info: "START"
 		},
+		"half way": {
+			name: "Hurst Park",
+			lat: 51.392211,
+			lng: -0.344472,
+			info: "25km - Half Way"
+		},
 		"finish": {
 			name: "Runnymede Pleasure Ground",
 			lat: 51.442137,
@@ -76,7 +82,10 @@ var map = function() {
 
 	var route; //Holds the PolyLine drawn of the route made by routeWaypoints
 
-	var routeWaypoints = []; //Contains multiple google.maps.LatLng() points
+	var routeWaypoints = []; //Holds multiple objects acting as waypoints
+
+	var sinceTimestamp; //Holds when the data way last updated, so we only need to pull down any changes
+	var fetchAutomatically = false;
 
 	function init() {
 		//Enable maps
@@ -89,6 +98,8 @@ var map = function() {
 			showPointsOfInterest();
 
 			drawRoute();
+
+			fetchNewWaypoints();
 		});
 	}
 
@@ -142,10 +153,56 @@ var map = function() {
 
 		route.setMap(map);
 
+		$.each(routeWaypoints, function(key, waypoint){
+			attachWaypoint(waypoint);
+		});
+	}
+
+	function createNewWaypoint(data) {
+		console.log(data);
+		var waypoint = {
+			lat: data.lat,
+			lng: data.lng,
+			timestamp: data.timestamp
+		};
+
+		routeWaypoints.push(waypoint);
+
+		attachWaypoint(waypoint);
+	}
+
+	function attachWaypoint(waypoint) {
 		var path = route.getPath();
 
-		$.each(routeWaypoints, function(key, waypoint){
-			path.push(waypoint);
+		var point = new google.maps.LatLng(waypoint.lat, waypoint.lng);
+
+		path.push(point);
+	}
+
+	function fetchNewWaypoints() {
+		$.ajax({
+			url: "fetchcoords.php",
+			data: {
+				since: sinceTimestamp
+			},
+			type: "GET",
+			success: function(data) {
+				sinceTimestamp = data.sinceTimestamp;
+				
+				$.each(data.coordinates, function(key, coords) {
+					createNewWaypoint(coords);
+				});
+
+				if(fetchAutomatically) {
+					setTimeout(function() {
+						fetchNewWaypoints();
+					}, 60000); //Refetch every minute
+				}
+			},
+			error: function() {
+				//HANDLE ERROR
+				alert("Can't get the location at the moment :(");
+			}
 		});
 	}
 

@@ -64,19 +64,19 @@ var map = function() {
 			name: "Putney Bridge",
 			lat: 51.466780,
 			lng: -0.213112,
-			info: "START"
+			info: "START - Putney Bridge"
 		},
 		"half way": {
 			name: "Hurst Park",
 			lat: 51.392211,
 			lng: -0.344472,
-			info: "25km - Half Way"
+			info: "25km - Half Way<br/>Hurst Park"
 		},
 		"finish": {
 			name: "Runnymede Pleasure Ground",
 			lat: 51.442137,
 			lng: -0.550820,
-			info: "FINISH"
+			info: "FINISH - Runnymede"
 		}
 	};
 
@@ -115,6 +115,9 @@ var map = function() {
 
 			marker.setMap(map);
 			markers.pointsOfInterest.push(marker);
+
+			//Realign window to accommodate points of interest
+			realignWindow(markers.pointsOfInterest);
 
 			//Attach an info window to marker
 			var infoWindow = new google.maps.InfoWindow({
@@ -188,7 +191,7 @@ var map = function() {
 			type: "GET",
 			success: function(data) {
 				sinceTimestamp = data.sinceTimestamp;
-				
+
 				$.each(data.coordinates, function(key, coords) {
 					createNewWaypoint(coords);
 				});
@@ -204,6 +207,15 @@ var map = function() {
 				alert("Can't get the location at the moment :(");
 			}
 		});
+	}
+
+	function realignWindow(markerArray) {
+		//Fit markers on screen
+		var boundary = new google.maps.LatLngBounds();
+		for (var i = 0; i < markerArray.length; i++) {
+			boundary.extend(markerArray[i].getPosition());
+		}
+		map.fitBounds(boundary);
 	}
 
 	init();

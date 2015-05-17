@@ -251,6 +251,17 @@ section.donate {
 	}
 }
 
+/* LIVE TRACKER */
+
+html.live, html.live body {
+	height: 100%;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+}
+
 @media (max-width: 950px) {
 	section.diabetes-uk ul.aims, section.the-challenge ul.facts {
 		img {

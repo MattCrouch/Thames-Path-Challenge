@@ -257,6 +257,15 @@ html.live, html.live body {
 	height: 100%;
 }
 
+html.live .gm-style-iw {
+	div.social {
+		//Style as appropriate
+		.caption {
+			text-align: center;
+		}
+	}
+}
+
 #map {
 	height: 100%;
 	width: 100%;

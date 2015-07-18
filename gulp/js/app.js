@@ -55,7 +55,8 @@ $( document ).ready(function() {
 var map = function() {
 	var map;
 	var markers = {
-		"pointsOfInterest": []
+		"pointsOfInterest": [],
+		"social": []
 	};
 	var infoWindows = [];
 
@@ -84,7 +85,12 @@ var map = function() {
 
 	var routeWaypoints = []; //Holds multiple objects acting as waypoints
 
-	var sinceTimestamp; //Holds when the data way last updated, so we only need to pull down any changes
+	//Holds when the data way last updated, so we only need to pull down any changes
+	var sinceTimestamp = {
+		"waypoints": null,
+		"social": null
+	};
+
 	var fetchAutomatically = false;
 
 	function init() {
@@ -100,6 +106,7 @@ var map = function() {
 			drawRoute();
 
 			fetchNewWaypoints();
+			fetchNewSocial();
 		});
 	}
 
@@ -108,12 +115,7 @@ var map = function() {
 
 		$.each(pointsOfInterest, function(key, value) {
 			//Make marker
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(value.lat,value.lng),
-				title: value.name
-			});
-
-			marker.setMap(map);
+			var marker = createNewMarker(value.lat, value.lng, value.name);
 			markers.pointsOfInterest.push(marker);
 
 			//Realign window to accommodate points of interest
@@ -174,6 +176,35 @@ var map = function() {
 		attachWaypoint(waypoint);
 	}
 
+	function createNewMarker(lat, lng, title) {
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(lat,lng),
+			title: title
+		});
+
+		marker.setMap(map);
+		
+		return marker;
+	}
+
+	function createNewSocial(data) {
+		console.log(data);
+
+		var marker = createNewMarker(data.lat, data.lng, "this is a post from " + data.source);
+
+		//Attach an info window to marker
+		var infoWindow = new google.maps.InfoWindow({
+			content: generateSocialMarkup(data)
+		});
+
+		google.maps.event.addListener(marker, 'click', function() {
+			closeInfoWindows();
+			infoWindow.open(map,marker);
+
+			infoWindows.push(infoWindow);
+		});
+	}
+
 	function attachWaypoint(waypoint) {
 		var path = route.getPath();
 
@@ -186,11 +217,11 @@ var map = function() {
 		$.ajax({
 			url: "fetchcoords.php",
 			data: {
-				since: sinceTimestamp
+				since: sinceTimestamp.waypoints
 			},
 			type: "GET",
 			success: function(data) {
-				sinceTimestamp = data.sinceTimestamp;
+				sinceTimestamp.waypoints = data.sinceTimestamp;
 
 				$.each(data.coordinates, function(key, coords) {
 					createNewWaypoint(coords);
@@ -209,6 +240,33 @@ var map = function() {
 		});
 	}
 
+	function fetchNewSocial() {
+		$.ajax({
+			url: "fetchsocial.php",
+			data: {
+				since: sinceTimestamp.social
+			},
+			type: "GET",
+			success: function(data) {
+				sinceTimestamp.social = data.sinceTimestamp;
+
+				$.each(data.posts, function(key, post) {
+					createNewSocial(post);
+				});
+
+				if(fetchAutomatically) {
+					setTimeout(function() {
+						fetchNewSocial();
+					}, 300000); //Refetch every 5 minutes
+				}
+			},
+			error: function() {
+				//HANDLE ERROR
+				alert("Can't get social feeds :(");
+			}
+		});
+	}
+
 	function realignWindow(markerArray) {
 		//Fit markers on screen
 		var boundary = new google.maps.LatLngBounds();
@@ -216,6 +274,15 @@ var map = function() {
 			boundary.extend(markerArray[i].getPosition());
 		}
 		map.fitBounds(boundary);
+	}
+
+	function generateSocialMarkup(data) {
+		html =  "<div class='social " + data.source + "'>" +
+					"<a href='" + data.url + "' target='_blank'><img src='" + data.image + "'/></a>" +
+					"<p class='caption'>" + data.text + "</p>" +
+				"</div>";
+
+		return html;
 	}
 
 	init();

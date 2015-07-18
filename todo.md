@@ -7,11 +7,13 @@
 - ~~Send locations to live tracker when available~~
 - Connect Twitter
 	- Geolocate and add to tracking stream
-- Connect Instagram
-	- Geolocate and add to tracking stream
+- ~~Connect Instagram~~
+	- ~~Geolocate and add to tracking stream~~
 - Connect Last.fm
 	- Add 'now playing' section to marker/fixed div
 	- Link to curated playlist on Spotify
+- Smarten up social InfoWindows
+- Stylise map markers for social/points of interest
 - Add link to main page when live
 
 ## App

@@ -1,0 +1,390 @@
+@charset "UTF-8";
+/* line 6, ../sass/includes/_meyer-reset.scss */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 16, ../sass/includes/_meyer-reset.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 19, ../sass/includes/_meyer-reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../sass/includes/_meyer-reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 25, ../sass/includes/_meyer-reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 29, ../sass/includes/_meyer-reset.scss */
+blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 35, ../sass/includes/_meyer-reset.scss */
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* line 40, ../sass/includes/_meyer-reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: 'Florence Sans';
+  src: url("../fonts/florsn33-webfont.eot");
+  src: url("../fonts/florsn33-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/florsn33-webfont.woff2") format("woff2"), url("../fonts/florsn33-webfont.woff") format("woff"), url("../fonts/florsn33-webfont.ttf") format("truetype"), url("../fonts/florsn33-webfont.svg#florencesans_blackregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 16, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 22, ../sass/style.scss */
+html {
+  font-size: 20px;
+  background-color: #FFFFFF;
+  font-family: "Lato", "Helvetica", "Arial", sans-serif;
+}
+
+/* line 28, ../sass/style.scss */
+h1, h2, h3, section.hero div.date {
+  font-family: "Florence Sans", "Helvetica", "Arial", sans-serif;
+  text-transform: uppercase;
+}
+
+/* line 33, ../sass/style.scss */
+h1, h2 {
+  font-size: 2.5rem;
+  color: #0F3670;
+}
+
+/* line 38, ../sass/style.scss */
+h1, section.hero div.date {
+  color: #FFFFFF;
+}
+
+/* line 42, ../sass/style.scss */
+section, section.hero > div {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* line 47, ../sass/style.scss */
+a {
+  color: inherit;
+}
+
+/* line 51, ../sass/style.scss */
+p {
+  margin: 1em 0;
+  line-height: 1.25em;
+}
+
+/* line 56, ../sass/style.scss */
+span {
+  line-height: 1.25em;
+}
+
+/* line 60, ../sass/style.scss */
+sup {
+  vertical-align: super;
+  font-size: 0.5em;
+}
+
+/* line 65, ../sass/style.scss */
+em {
+  font-style: italic;
+}
+
+/* line 69, ../sass/style.scss */
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* line 74, ../sass/style.scss */
+a.button {
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  border: 5px solid #FFFFFF;
+  display: inline-block;
+}
+/* line 82, ../sass/style.scss */
+a.button:hover {
+  color: #43ACE5;
+  background-color: #FFFFFF;
+}
+
+/* line 88, ../sass/style.scss */
+.clear {
+  clear: both;
+}
+
+/* line 92, ../sass/style.scss */
+section.hero {
+  position: relative;
+  background-color: #0F3670;
+  height: 90vh;
+  min-height: 400px;
+  background-image: url("../images/hero-image.jpg");
+  background-size: cover;
+  background-position: center;
+}
+/* line 101, ../sass/style.scss */
+section.hero > div {
+  display: block;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/* line 110, ../sass/style.scss */
+section.hero > div > div {
+  margin-top: 2rem;
+}
+/* line 115, ../sass/style.scss */
+section.hero a.button {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+}
+/* line 119, ../sass/style.scss */
+section.hero a.button:hover {
+  color: #43ACE5;
+  background-color: #FFFFFF;
+}
+/* line 125, ../sass/style.scss */
+section.hero span.tpc {
+  display: block;
+  font-size: 4rem;
+  color: #43ACE5;
+}
+/* line 131, ../sass/style.scss */
+section.hero div.date {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+/* line 137, ../sass/style.scss */
+section.diabetes-uk {
+  background-color: rgba(67, 172, 229, 0.5);
+}
+/* line 140, ../sass/style.scss */
+section.diabetes-uk div.logo {
+  padding-top: 2rem;
+}
+/* line 143, ../sass/style.scss */
+section.diabetes-uk div.logo img {
+  max-width: 100%;
+}
+
+/* line 150, ../sass/style.scss */
+section.the-challenge img {
+  width: 100%;
+}
+
+/* line 155, ../sass/style.scss */
+section.diabetes-uk ul.aims, section.the-challenge ul.facts {
+  text-align: left;
+  padding-top: 2rem;
+}
+/* line 159, ../sass/style.scss */
+section.diabetes-uk ul.aims li, section.the-challenge ul.facts li {
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+}
+/* line 164, ../sass/style.scss */
+section.diabetes-uk ul.aims li img, section.the-challenge ul.facts li img {
+  float: left;
+  border: 0.5rem solid #0F3670;
+  border-radius: 100px;
+  margin: 0 1em 1em 1em;
+  width: 25%;
+  height: 25%;
+  background-color: #FFFFFF;
+}
+/* line 174, ../sass/style.scss */
+section.diabetes-uk ul.aims li:first-child img, section.the-challenge ul.facts li:first-child img {
+  margin-left: 0;
+}
+/* line 178, ../sass/style.scss */
+section.diabetes-uk ul.aims li:last-child, section.the-challenge ul.facts li:last-child {
+  float: right;
+}
+/* line 182, ../sass/style.scss */
+section.diabetes-uk ul.aims li p, section.the-challenge ul.facts li p {
+  margin: 0;
+  padding-bottom: 1em;
+  overflow: hidden;
+}
+
+/* line 190, ../sass/style.scss */
+section.donate {
+  background-color: rgba(67, 172, 229, 0.5);
+}
+/* line 192, ../sass/style.scss */
+section.donate:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+/* line 199, ../sass/style.scss */
+section.donate .description, section.donate .donate {
+  margin-top: 1rem;
+  float: left;
+  width: 50%;
+}
+/* line 206, ../sass/style.scss */
+section.donate .description img {
+  width: 50%;
+}
+/* line 212, ../sass/style.scss */
+section.donate .donate > div {
+  padding: 1rem 0;
+}
+/* line 217, ../sass/style.scss */
+section.donate .donate .current-amount span.current, section.donate .donate .current-amount span.total {
+  font-size: 2rem;
+  font-weight: bold;
+  opacity: 1;
+  transition: all 1s;
+}
+/* line 223, ../sass/style.scss */
+section.donate .donate .current-amount span.current:before, section.donate .donate .current-amount span.total:before {
+  content: "£";
+}
+/* line 227, ../sass/style.scss */
+section.donate .donate .current-amount span.current.loading, section.donate .donate .current-amount span.total.loading {
+  opacity: 0.25;
+}
+/* line 234, ../sass/style.scss */
+section.donate .donate .ways-to-donate .justgiving {
+  margin-top: 1rem;
+  display: block;
+}
+/* line 238, ../sass/style.scss */
+section.donate .donate .ways-to-donate .justgiving img {
+  width: 10rem;
+}
+/* line 243, ../sass/style.scss */
+section.donate .donate .ways-to-donate span.text {
+  display: block;
+}
+/* line 246, ../sass/style.scss */
+section.donate .donate .ways-to-donate span.text span {
+  font-weight: bold;
+}
+
+/* LIVE TRACKER */
+/* line 256, ../sass/style.scss */
+html.live, html.live body {
+  height: 100%;
+}
+
+/* line 260, ../sass/style.scss */
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 950px) {
+  /* line 267, ../sass/style.scss */
+  section.diabetes-uk ul.aims img, section.the-challenge ul.facts img {
+    display: none;
+  }
+}
+@media (max-width: 675px) {
+  /* line 274, ../sass/style.scss */
+  html {
+    font-size: 22px;
+  }
+
+  /* line 278, ../sass/style.scss */
+  section, section.hero > div {
+    padding: 1rem;
+  }
+
+  /* line 283, ../sass/style.scss */
+  section.diabetes-uk ul.aims li, section.diabetes-uk ul.aims li:last-child, section.the-challenge ul.facts li, section.the-challenge ul.facts li:last-child {
+    display: block;
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+
+  /* line 291, ../sass/style.scss */
+  h1, h2 {
+    font-size: 2rem;
+  }
+
+  /* line 295, ../sass/style.scss */
+  section.hero {
+    height: auto;
+    display: block;
+    background-image: url("../images/hero-image-650px.jpg");
+    min-height: 0;
+  }
+  /* line 301, ../sass/style.scss */
+  section.hero > div {
+    padding: 0;
+    display: block;
+    position: relative;
+    -webkit-transform: none;
+    transform: none;
+  }
+  /* line 309, ../sass/style.scss */
+  section.hero span.tpc {
+    font-size: 2rem;
+  }
+  /* line 313, ../sass/style.scss */
+  section.hero div.date {
+    font-size: 1rem;
+  }
+
+  /* line 319, ../sass/style.scss */
+  section.donate .description, section.donate .donate {
+    float: none;
+    width: 100%;
+  }
+  /* line 325, ../sass/style.scss */
+  section.donate .description img {
+    width: 75%;
+  }
+}
+@media (max-width: 450px) {
+  /* line 333, ../sass/style.scss */
+  h1, h2 {
+    font-size: 1.25rem;
+  }
+
+  /* line 337, ../sass/style.scss */
+  section.hero h1 {
+    font-size: 1rem;
+  }
+}

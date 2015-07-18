@@ -5,10 +5,9 @@
 	<meta name="viewport" content="width=device-width">
 	<meta property="og:title" content="Matt takes on the Thames Path Challenge" />
 	<meta property="og:site_name" content="MattCrouch.net"/>
-	<meta property="og:url" content="http://www.mattcrouch.net/tpc" />
-	<meta property="article:author" content="https://www.facebook.com/matt.crouch" />
+	<meta property="og:url" content="http://www.mattcrouch.net/tpc/" />
 	<meta property="og:description" content="I'm taking on the Thames Path Challenge - walking 50km along the Thames to raise money for Diabetes UK." />
-	<meta property="og:image" content="http://mattcrouch.net/tpc/build/images/diabetes-uk-logo.png" />
+	<meta property="og:image" content="http://mattcrouch.net/tpc/build/images/hero-image.jpg" />
 	<title>Matt takes on the Thames Path Challenge</title>
 	<link rel="stylesheet" type="text/css" href="build/css/style.css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
@@ -105,6 +104,11 @@
 				<p>Your donation will help fund their research into the causes, prevention and hopeful cure of diabetes alongside care and support for those with the condition.</p>
 
 				<a href='http://www.justgiving.com/matt-crouch-tpc' title='JustGiving - Sponsor me now!' target='_blank' class="button">Donate Now</a>
+			</div>
+		</div>
+	</section>
+</body>
+</html>et='_blank' class="button">Donate Now</a>
 			</div>
 		</div>
 	</section>

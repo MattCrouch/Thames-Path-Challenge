@@ -55,7 +55,7 @@ foreach($values as $value) {
 if($doUpdate) {
 	//Set up cURL
 	$ch = curl_init(); 
-	curl_setopt($ch, CURLOPT_URL, "https://api.justgiving.com/" . JUST_GIVING_API_KEY . "/v1/fundraising/pages/matt-crouch-tpc?format=json"); 
+	curl_setopt($ch, CURLOPT_URL, "http://api.justgiving.com/" . JUST_GIVING_API_KEY . "/v1/fundraising/pages/matt-crouch-tpc?format=json"); 
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 	$output = curl_exec($ch); 
 	curl_close($ch);

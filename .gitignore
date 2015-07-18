@@ -1,3 +1,4 @@
 build/fonts/*
 gulp/node_modules
 credentials.php
+*.scssc

@@ -189,9 +189,10 @@ var map = function() {
 
 	function drawRoute() {
 		route = new google.maps.Polyline({
-			strokeColor: '#000000',
+			clickable: false,
+			strokeColor: '#0F3670',
 			strokeOpacity: 1.0,
-			strokeWeight: 3
+			strokeWeight: 5
 		});
 
 		route.setMap(map);
@@ -202,7 +203,6 @@ var map = function() {
 	}
 
 	function createNewWaypoint(data) {
-		//console.log(data);
 		var waypoint = {
 			lat: data.lat,
 			lng: data.lng,
@@ -219,8 +219,6 @@ var map = function() {
 			icon = null;
 		}
 
-		console.log(icon);
-
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(lat,lng),
 			title: title,
@@ -233,8 +231,6 @@ var map = function() {
 	}
 
 	function createNewSocial(data) {
-		//console.log(data);
-
 		var marker = createNewMarker(data.lat, data.lng, "this is a post from " + data.source, icons[data.source]);
 
 		//Attach an info window to marker

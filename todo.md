@@ -5,6 +5,9 @@
 - ~~Create link to DB~~
 - ~~Store locations in DB~~
 - ~~Send locations to live tracker when available~~
+- Connect RunKeeper
+	- Track only one specific Live activity
+	- Create backend to control which Live activity to track
 - ~~Connect Twitter~~
 	- ~~Geolocate and add to tracking stream~~
 - ~~Connect Instagram~~
@@ -16,15 +19,3 @@
 - ~~Stylise map markers for social/points of interest~~
 - Add link to main page when live
 - Make sure social feeds don't pull in data outside of live time
-
-## App
-- Set-up dev environment
-- Clear start/end buttons
-	- Send message to server
-- Add background location tracking
-- Ping to server
-	- Test for optimum location ping to ensure accuracy but avoid battery drain/creepiness
-- Field test
-	- Short walk x 3
-	- Long walk x 1
-- Include timer from start

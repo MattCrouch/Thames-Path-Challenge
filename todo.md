@@ -5,8 +5,8 @@
 - ~~Create link to DB~~
 - ~~Store locations in DB~~
 - ~~Send locations to live tracker when available~~
-- Connect Twitter
-	- Geolocate and add to tracking stream
+- ~~Connect Twitter~~
+	- ~~Geolocate and add to tracking stream~~
 - ~~Connect Instagram~~
 	- ~~Geolocate and add to tracking stream~~
 - Connect Last.fm
@@ -15,6 +15,7 @@
 - Smarten up social InfoWindows
 - ~~Stylise map markers for social/points of interest~~
 - Add link to main page when live
+- Make sure social feeds don't pull in data outside of live time
 
 ## App
 - Set-up dev environment

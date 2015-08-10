@@ -7,3 +7,5 @@ define('DB_NAME', "x");
 define('GOOGLE_MAPS_API_KEY', "x");
 define('INSTAGRAM_CLIENT_ID', "x");
 define('INSTAGRAM_USER_ID', "x");
+define('RUNKEEPER_ACCESS_TOKEN', "x");
+define('TWITTER_APPLICATION_TOKEN', "x");

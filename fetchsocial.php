@@ -34,11 +34,104 @@ if ($result && $result->num_rows > 0) {
     }
 }
 
-//Create datetime for 30 minutes ago
+$newRows = array(); // Holds any new entries
+
+//Create datetime for 5 minutes ago
 $now = new DateTime();
-$dateInterval = new DateInterval("PT5M"); //30 mins interval
+$dateInterval = new DateInterval("PT5M"); //5 mins interval
 $updateTime = clone $now;
 $updateTime->sub($dateInterval);
+
+if($lastUpdated['last_twitter_check']['last_updated'] < $updateTime) {
+    /* Fetch new Twitter data */
+    $sinceId = $lastUpdated['last_twitter_check']['value'];
+
+    //Set up cURL
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stupler&exlude_replies=true&trim_user=true&since_id=" . $sinceId); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Authorization: Bearer ' . TWITTER_APPLICATION_TOKEN,
+        'Content-Type: application/x-www-form-urlencoded;charset=UTF-8'
+    ));
+    $output = curl_exec($ch); 
+    curl_close($ch);
+
+    //Decode result
+    $output = json_decode($output);
+
+    $newMinId = NULL;
+
+    foreach($output as $tweet){
+        if($tweet->id === $sinceId) {
+            continue;
+        }
+        
+        if($newMinId == NULL) {
+            $newMinId = $tweet->id;
+        }
+
+        if(isset($tweet->created_at)) {
+            $timestamp = new DateTime($tweet->created_at);
+        } else {
+            $timestamp = new DateTime();
+        }
+
+        $url = "https://twitter.com/statuses/" . $tweet->id;
+
+        $lat = NULL;
+        $lng = NULL;
+
+        if(isset($tweet->coordinates)) {
+            $lat = $tweet->coordinates->coordinates[1];
+            $lng = $tweet->coordinates->coordinates[0];
+        } else if(isset($tweet->place)) {
+            //Get an average position from bounding box
+            $smallLat = NULL;
+            $bigLat = NULL;
+            $smallLng = NULL;
+            $bigLng = NULL;
+
+            foreach($tweet->place->bounding_box->coordinates as $polygon) {
+                foreach($polygon as $coords) {
+                    if(!$smallLat || $coords[1] < $smallLat) {
+                        $smallLat = $coords[1];
+                    }
+                    if(!$bigLat || $coords[1] > $bigLat) {
+                        $bigLat = $coords[1];
+                    }
+                    if(!$smallLng || $coords[0] < $smallLng) {
+                        $smallLng = $coords[0];
+                    }
+                    if(!$bigLng || $coords[0] > $bigLng) {
+                        $bigLng = $coords[0];
+                    }
+                }
+            }
+
+            if(!$smallLat || !$bigLat || !$smallLng || !$bigLng) {
+                continue; //Can't really do much without them!
+            }
+
+            $lat = ($smallLat + $bigLat) / 2;
+            $lng = ($smallLng + $bigLng) / 2;
+        } else {
+            continue;
+        }
+
+        if(isset($tweet->entities) && isset($tweet->entities->media)) {
+            $image = $tweet->entities->media[0]->media_url;
+        } else {
+            $image = false;
+        }
+
+        $newRows[] = "('twitter', " . "'" . $conn->real_escape_string($tweet->text) . "', '" . ($image ? $conn->real_escape_string($image) : "NULL") . "', '" . $conn->real_escape_string($url) . "', " . (isset($lat) ? "'" . $lat . "'" : "NULL") . ", " . (isset($lng) ? "'" . $lng . "'" : "NULL") . ", '" . $timestamp->format("Y-m-d H:i:s") . "')";
+    }
+
+    //Update last checked
+    $sql = "UPDATE tpc SET " . (isset($newMinId) ? "value = '" . $newMinId . "', " : "") . "last_updated = '" . date("Y-m-d H:i:s") . "' WHERE name = 'last_twitter_check'";
+    $update = $conn->query($sql);
+}
 
 if($lastUpdated['last_instagram_check']['last_updated'] < $updateTime) {
     /* Fetch new Instagram data */
@@ -55,8 +148,6 @@ if($lastUpdated['last_instagram_check']['last_updated'] < $updateTime) {
     $output = json_decode($output);
 
     $newMinId = NULL;
-
-    $newRows = array();
 
     foreach($output->data as $item){
         if($item->id === $currentMinId) {
@@ -77,14 +168,14 @@ if($lastUpdated['last_instagram_check']['last_updated'] < $updateTime) {
         }
     }
 
-    if(count($newRows) > 0) {
-        $sql = "INSERT INTO tpc_social (source, post_text, image_url, url, latitude, longitude, post_timestamp) VALUES " . implode(",", $newRows);
-        $insert = $conn->query($sql);
-    }
-
     //Update last checked
     $sql = "UPDATE tpc SET " . (isset($newMinId) ? "value = '" . $newMinId . "', " : "") . "last_updated = '" . date("Y-m-d H:i:s") . "' WHERE name = 'last_instagram_check'";
     $update = $conn->query($sql);
+}
+
+if(count($newRows) > 0) {
+    $sql = "INSERT INTO tpc_social (source, post_text, image_url, url, latitude, longitude, post_timestamp) VALUES " . implode(",", $newRows);
+    $insert = $conn->query($sql);
 }
 
 //Only get the updates we don't already have

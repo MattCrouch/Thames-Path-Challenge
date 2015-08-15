@@ -68,6 +68,9 @@ var map = function() {
 
 	var routeWaypoints = []; //Holds multiple objects acting as waypoints
 
+	var tracks = []; //Holds latest scrobbles
+	var trackHistoryLength = 5;
+
 	//Holds when the data way last updated, so we only need to pull down any changes
 	var sinceTimestamp = {
 		"waypoints": null,
@@ -93,6 +96,7 @@ var map = function() {
 
 			fetchNewWaypoints();
 			fetchNewSocial();
+			fetchNewScrobbles();
 		});
 	}
 
@@ -246,6 +250,23 @@ var map = function() {
 		});
 	}
 
+	function addTrack(track) {
+		if(tracks.length >= trackHistoryLength) {
+			tracks.splice(tracks.length - 1,1); //Remove the oldest track
+		}
+		tracks.unshift(track);
+
+		console.log(tracks[0].title);
+
+		createTrackView(track);
+	}
+
+	function createTrackView(track) {
+		var source   = $("#some-template").html();
+		var template = Handlebars.compile(source);
+		$(".overlay .lastfm").html(template(track));
+	}
+
 	function attachWaypoint(waypoint) {
 		var path = route.getPath();
 
@@ -304,6 +325,33 @@ var map = function() {
 			error: function() {
 				//HANDLE ERROR
 				alert("Can't get social feeds :(");
+			}
+		});
+	}
+
+	function fetchNewScrobbles() {
+		$.ajax({
+			url: "fetchlastfm.php",
+			data: {
+				since: sinceTimestamp.lastfm
+			},
+			type: "GET",
+			success: function(data) {
+				sinceTimestamp.lastfm = data.sinceTimestamp;
+
+				$.each(data.tracks, function(key, track) {
+					addTrack(track);
+				});
+
+				if(fetchAutomatically) {
+					setTimeout(function() {
+						fetchNewScrobbles();
+					}, 300000); //Refetch every 5 minutes
+				}
+			},
+			error: function() {
+				//HANDLE ERROR
+				alert("Can't get scrobbles :(");
 			}
 		});
 	}

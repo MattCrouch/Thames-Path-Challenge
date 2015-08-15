@@ -61,12 +61,8 @@ if($lastUpdated['last_updated'] < $updateTime) {
         global $newMinId, $conn;
 
         if(isset($track->date)) {
-            $checkDate = date_parse($track->date->uts);
-            if($checkDate['error_count'] == 0) {
-                $timestamp = new DateTime($track->date->uts);
-            } else {
-                $timestamp = new DateTime();
-            }
+            $timestamp = new DateTime();
+            $timestamp->setTimestamp($track->date->uts);
 
             if($newMinId == NULL) {
                 $newMinId = $track->date->uts;
@@ -137,11 +133,13 @@ if($sinceTimestamp) {
     $sql .= " WHERE post_timestamp >= '" . $sinceTimestamp->format("Y-m-d H:i:s") . "'";
 }
 
+$sql .= " ORDER BY post_timestamp DESC LIMIT 1";
+
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        $values['posts'][] = array(
+        $values['tracks'][] = array(
             "artist" => $row['artist'],
             "title" => $row['title'],
             "album" => $row['album'],

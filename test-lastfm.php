@@ -2,6 +2,11 @@
 header("Content-Type: text/html; charset=utf-8");
 include("credentials.php");
 
+$checkDate = date_parse("1439631760");
+
+var_dump($checkDate);
+exit;
+
 //Set up cURL
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=stupler&api_key=" . LASTFM_API_KEY . "&format=json&from=1439631760"); 

@@ -14,11 +14,35 @@
 	<link rel="stylesheet" type="text/css" href="build/css/style.css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="build/js/handlebars.min-latest.js"></script>
 	<script type="text/javascript" src="build/js/min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_MAPS_API_KEY?>">
     </script>
 </head>
 <body>
 	<div id="map"></div>
+	<div class="overlay">
+		<div class="lastfm">
+			
+		</div>
+		<div class="total">
+			TOTAL HERE
+		</div>
+	</div>
 </body>
+<script id="some-template" type="text/x-handlebars-template">
+	<div class="nowPlaying">
+		<a href="{{ url }}">
+			<img src="{{#if image_url_large }}{{image_url_large}}{{else}}build/images/live/icons/music-no-circle.svg{{/if}}" alt="Now Playing" class="albumArt"/>
+		</a>
+		<div class="detail">
+			<span>Now Playing</span>
+			<ul>
+				<li class="title">{{ title }}</li>
+				<li class="artist">{{ artist }}</li>
+				<li class="album">{{ album }}</li>
+			</ul>
+		</div>
+	</div>
+</script>
 </html>

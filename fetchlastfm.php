@@ -105,11 +105,11 @@ if($lastUpdated['last_updated'] < $updateTime) {
         } else {
             $newRows[] = processTrack($output->recenttracks->track);
         }
-
-        //Update last checked
-        $sql = "UPDATE tpc SET " . (isset($newMinId) ? "value = '" . $newMinId . "', " : "") . "last_updated = '" . date("Y-m-d H:i:s") . "' WHERE name = 'last_last_fm_check'";
-        $update = $conn->query($sql);
     }
+
+    //Update last checked
+    $sql = "UPDATE tpc SET " . (isset($newMinId) ? "value = '" . $newMinId . "', " : "") . "last_updated = '" . date("Y-m-d H:i:s") . "' WHERE name = 'last_last_fm_check'";
+    $update = $conn->query($sql);
 }
 
 if(count($newRows) > 0) {

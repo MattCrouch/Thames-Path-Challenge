@@ -48,7 +48,7 @@ if($lastUpdated['last_twitter_check']['last_updated'] < $updateTime) {
 
     //Set up cURL
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stupler&exlude_replies=true&trim_user=true&since_id=" . $sinceId); 
+    curl_setopt($ch, CURLOPT_URL, "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stupler&exclude_replies=true&trim_user=true&since_id=" . $sinceId); 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Authorization: Bearer ' . TWITTER_APPLICATION_TOKEN,
@@ -125,7 +125,7 @@ if($lastUpdated['last_twitter_check']['last_updated'] < $updateTime) {
             $image = false;
         }
 
-        $newRows[] = "('twitter', " . "'" . $conn->real_escape_string($tweet->text) . "', '" . ($image ? $conn->real_escape_string($image) : "NULL") . "', '" . $conn->real_escape_string($url) . "', " . (isset($lat) ? "'" . $lat . "'" : "NULL") . ", " . (isset($lng) ? "'" . $lng . "'" : "NULL") . ", '" . $timestamp->format("Y-m-d H:i:s") . "')";
+        $newRows[] = "('twitter', " . "'" . $conn->real_escape_string($tweet->text) . "', '" . ($image ? $conn->real_escape_string($image) : "") . "', '" . $conn->real_escape_string($url) . "', " . (isset($lat) ? "'" . $lat . "'" : "NULL") . ", " . (isset($lng) ? "'" . $lng . "'" : "NULL") . ", '" . $timestamp->format("Y-m-d H:i:s") . "')";
     }
 
     //Update last checked

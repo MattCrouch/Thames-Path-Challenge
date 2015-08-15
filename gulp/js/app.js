@@ -262,9 +262,8 @@ var map = function() {
 	}
 
 	function createTrackView(track) {
-		var source   = $("#some-template").html();
-		var template = Handlebars.compile(source);
-		$(".overlay .lastfm").html(template(track));
+		var html = generateScrobbleMarkup(track);
+		$(".overlay .lastfm").html(generateScrobbleMarkup(track));
 	}
 
 	function attachWaypoint(waypoint) {
@@ -369,6 +368,24 @@ var map = function() {
 		html =  "<div class='social " + data.source + "'>" +
 					"<a href='" + data.url + "' target='_blank'><img src='" + data.image + "'/></a>" +
 					"<p class='caption'>" + data.text + "</p>" +
+				"</div>";
+
+		return html;
+	}
+
+	function generateScrobbleMarkup(data) {
+		html =  "<div class='nowPlaying'>" +
+					"<a href='" + data.url + "'>" +
+						"<img src='" + (data.image_url_large !== "" ? data.image_url_large : "build/images/live/icons/music-no-circle.svg") + "' alt='Now Playing' class='albumArt'/>" +
+					"</a>" +
+					"<div class='detail'>" +
+						"<span>Now Playing</span>" +
+						"<ul>" +
+							"<li class='title'>" + data.title + "</li>" +
+							"<li class='artist'>" + data.artist + "</li>" +
+							"<li class='album'>" + data.album + "</li>" +
+						"</ul>" +
+					"</div>" +
 				"</div>";
 
 		return html;

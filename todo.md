@@ -21,3 +21,5 @@
 - ~~Stylise map markers for social/points of interest~~
 - Add link to main page when live
 - Make sure social feeds don't pull in data outside of live time
+- Add live donation tracker
+	- Add donation button like on main page

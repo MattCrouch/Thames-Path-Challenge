@@ -9,3 +9,4 @@ define('INSTAGRAM_CLIENT_ID', "x");
 define('INSTAGRAM_USER_ID', "x");
 define('RUNKEEPER_ACCESS_TOKEN', "x");
 define('TWITTER_APPLICATION_TOKEN', "x");
+define('LASTFM_API_KEY', "x");

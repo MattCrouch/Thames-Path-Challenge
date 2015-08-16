@@ -9,13 +9,22 @@ function fetchDonations(fetchAutomatically) {
 			current.removeClass("loading");
 			total.removeClass("loading");
 
-			current.text("0.00").data('amount', "0.00").data('total', parseFloat(data.totalRaised).toFixed(2));
-			total.text(data.target);
+			var totalRaised = data.totalRaised.replace(/\,/g,'');
+			var target = data.target.replace(/\,/g,'');
+
+			var currentValue = 0;
+
+			if(current.data('amount')) {
+				currentValue = current.data('amount');
+			}
+
+			current.text(parseFloat(currentValue).toFixed(2)).data('amount', parseFloat(currentValue).toFixed(2)).data('total', parseFloat(totalRaised).toFixed(2));
+			total.text(target);
 
 			var ms = 1000;
 			var steps = 25;
 			var stepLength = ms / steps;
-			var stepAmount = data.totalRaised / steps;
+			var stepAmount = totalRaised / steps;
 
 			count();
 

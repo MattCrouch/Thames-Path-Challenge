@@ -97,6 +97,12 @@ var map = function() {
 			fetchNewWaypoints();
 			fetchNewSocial();
 			fetchNewScrobbles();
+
+			//TODO: DELETE THIS
+			$(document).on("click", "#map", function(e) {
+				console.log("DO THIS");
+				animateNewTrack(tracks[0]);
+			});
 		});
 	}
 
@@ -258,12 +264,26 @@ var map = function() {
 
 		console.log(tracks[0].title);
 
-		createTrackView(track);
+		animateNewTrack(track);
+	}
+
+	function animateNewTrack(track) {
+		$(".overlay .lastfm .nowPlaying").addClass("out");
+
+		setTimeout(function() {
+			createTrackView(track);
+		}, 1000);
 	}
 
 	function createTrackView(track) {
+		console.log("create track view!");
+		var container = $(".overlay .lastfm");
 		var html = generateScrobbleMarkup(track);
-		$(".overlay .lastfm").html(generateScrobbleMarkup(track));
+		container.html(html);
+
+		setTimeout(function() {
+			$(".overlay .lastfm .nowPlaying").removeClass("in");
+		}, 1000);
 	}
 
 	function attachWaypoint(waypoint) {
@@ -374,7 +394,7 @@ var map = function() {
 	}
 
 	function generateScrobbleMarkup(data) {
-		html =  "<div class='nowPlaying'>" +
+		html =  "<div class='nowPlaying in'>" +
 					"<a href='" + data.url + "'>" +
 						"<img src='" + (data.image_url_large !== "" ? data.image_url_large : "build/images/live/icons/music-no-circle.svg") + "' alt='Now Playing' class='albumArt'/>" +
 					"</a>" +

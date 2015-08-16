@@ -1,5 +1,6 @@
 @import "includes/settings";
 @import "includes/meyer-reset";
+@import "includes/animations";
 
 @font-face {
     font-family: 'Florence Sans';
@@ -275,7 +276,7 @@ html.live .overlay {
 	position: absolute;
 	bottom: 0;
 	width:100%;
-	pointer-events: none;
+	//pointer-events: none;
 	padding: 20px 0;
 	color: $header-color;
 	
@@ -293,11 +294,32 @@ html.live .overlay {
 		padding: 0 20px;
 	}
 
+	.total {
+		float: right;
+	}
+
 	.lastfm {
 		.nowPlaying {
+			position: relative;
 			display: table;
 
+			&.out {
+				-moz-animation: swapOut 0.5s forwards;
+				-webkit-animation: swapOut 0.5s forwards;
+				animation: swapOut 0.5s forwards;
+			}
+
+			&.in {
+				opacity: 0;
+				-moz-animation: swapOut 0.5s forwards reverse;
+				-webkit-animation: swapOut 0.5s forwards reverse;
+				animation: swapOut 0.5s forwards reverse;
+			}
+
 			a {
+				float: left;
+				margin-right: 1em;
+				overflow: hidden;
 				pointer-events: auto;
 			}
 
@@ -307,10 +329,8 @@ html.live .overlay {
 			}
 
 			.albumArt {
-				float: left;
 				border: 0.5rem solid $accent1;
 				border-radius: 100px;
-				margin-right: 1em;
 				width: 6em;
 				height: 6em;
 				background-color: $header-color;

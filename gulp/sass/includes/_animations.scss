@@ -1,0 +1,34 @@
+@import "includes/settings";
+
+@-moz-keyframes swapOut {
+	0% {
+  		opacity: 1;
+  	}
+  
+	100% {
+  		opacity: 0;
+  		
+	}
+}
+
+@-webkit-keyframes swapOut {
+	0% {
+  		opacity: 1;
+  	}
+  
+	100% {
+  		opacity: 0;
+  		
+	}
+}
+
+@keyframes swapOut {
+	0% {
+  		opacity: 1;
+  	}
+  
+	100% {
+  		opacity: 0;
+  		
+	}
+}

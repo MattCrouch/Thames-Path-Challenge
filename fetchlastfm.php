@@ -37,7 +37,7 @@ $newRows = array(); // Holds any new entries
 
 //Create datetime for 5 minutes ago
 $now = new DateTime();
-$dateInterval = new DateInterval("PT1M"); //5 mins interval
+$dateInterval = new DateInterval("PT5M"); //5 mins interval
 $updateTime = clone $now;
 $updateTime->sub($dateInterval);
 

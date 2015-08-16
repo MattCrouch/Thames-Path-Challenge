@@ -97,12 +97,6 @@ var map = function() {
 			fetchNewWaypoints();
 			fetchNewSocial();
 			fetchNewScrobbles();
-
-			//TODO: DELETE THIS
-			$(document).on("click", "#map", function(e) {
-				console.log("DO THIS");
-				animateNewTrack(tracks[0]);
-			});
 		});
 	}
 
@@ -261,25 +255,23 @@ var map = function() {
 			tracks.splice(tracks.length - 1,1); //Remove the oldest track
 		}
 		tracks.unshift(track);
-
-		console.log(tracks[0].title);
-
-		animateNewTrack(track);
 	}
 
 	function animateNewTrack(track) {
-		$(".overlay .lastfm .nowPlaying").addClass("out");
+		var old = $(".overlay .lastfm .nowPlaying");
+		old.addClass("out");
 
 		setTimeout(function() {
-			createTrackView(track);
+			old.remove();
 		}, 1000);
+
+		createTrackView(track);
 	}
 
 	function createTrackView(track) {
-		console.log("create track view!");
 		var container = $(".overlay .lastfm");
 		var html = generateScrobbleMarkup(track);
-		container.html(html);
+		container.append(html);
 
 		setTimeout(function() {
 			$(".overlay .lastfm .nowPlaying").removeClass("in");
@@ -361,6 +353,10 @@ var map = function() {
 				$.each(data.tracks, function(key, track) {
 					addTrack(track);
 				});
+
+				if(data.tracks.length > 0) {
+					animateNewTrack(tracks[0]);
+				}
 
 				if(fetchAutomatically) {
 					setTimeout(function() {

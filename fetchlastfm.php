@@ -133,7 +133,7 @@ if($sinceTimestamp) {
     $sql .= " WHERE post_timestamp >= '" . $sinceTimestamp->format("Y-m-d H:i:s") . "'";
 }
 
-$sql .= " ORDER BY post_timestamp DESC LIMIT 1";
+$sql .= " ORDER BY post_timestamp DESC";
 
 $result = $conn->query($sql);
 

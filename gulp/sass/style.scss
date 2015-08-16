@@ -276,7 +276,7 @@ html.live .overlay {
 	position: absolute;
 	bottom: 0;
 	width:100%;
-	//pointer-events: none;
+	pointer-events: none;
 	padding: 20px 0;
 	color: $header-color;
 	
@@ -299,8 +299,10 @@ html.live .overlay {
 	}
 
 	.lastfm {
+		position: relative;
+		height: 6em;
 		.nowPlaying {
-			position: relative;
+			position: absolute;
 			display: table;
 
 			&.out {

@@ -214,23 +214,6 @@ section.donate {
 			padding: 1rem 0;	
 		}
 
-		.current-amount {
-			span.current, span.total {
-				font-size: 2rem;
-				font-weight: bold;
-				opacity: 1;				
-				transition: all 1s;
-
-				&:before {
-					content: "£";
-				}
-
-				&.loading {
-					opacity: 0.25;
-				}
-			}
-		}
-
 		.ways-to-donate {
 			.justgiving {
 				margin-top: 1rem;
@@ -248,6 +231,23 @@ section.donate {
 					font-weight: bold;
 				}
 			}
+		}
+	}
+}
+
+.current-amount {
+	span.current, span.total {
+		font-size: 2rem;
+		font-weight: bold;
+		opacity: 1;				
+		transition: all 1s;
+
+		&:before {
+			content: "£";
+		}
+
+		&.loading {
+			opacity: 0.25;
 		}
 	}
 }
@@ -288,17 +288,21 @@ html.live .overlay {
 	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
 
-	.lastfm, .total {
+	div.lastfm, div.total {
 		float: left;
 		width: 50%;
 		padding: 0 20px;
 	}
 
-	.total {
+	a {
+		pointer-events: auto;
+	}
+
+	div.total {
 		float: right;
 	}
 
-	.lastfm {
+	div.lastfm {
 		position: relative;
 		height: 6em;
 		.nowPlaying {
@@ -322,7 +326,6 @@ html.live .overlay {
 				float: left;
 				margin-right: 1em;
 				overflow: hidden;
-				pointer-events: auto;
 			}
 
 			.detail {
@@ -346,6 +349,23 @@ html.live .overlay {
 			.artist, .album {
 				font-size: 0.75em;
 			}
+		}
+	}
+
+	div.total {
+		display: table;
+		height: 6em;
+		text-align: center;
+		
+		.current-amount {
+			display: table-cell;
+			vertical-align: middle;
+			width: 50%;
+		}
+
+		.donate-now {
+			display: table-cell;
+			vertical-align: middle;
 		}
 	}
 }

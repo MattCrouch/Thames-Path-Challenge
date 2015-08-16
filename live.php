@@ -24,8 +24,14 @@
 		<div class="lastfm">
 			
 		</div>
-		<div class="total">
-			TOTAL HERE
+		<div class="total donate">
+			<div class="current-amount">
+				<h3>Amount Raised</h3>
+				<span class="current loading">0.00</span> of <span class="total loading">0.00</span>
+			</div>
+			<div class="donate-now">
+				<a href='http://www.justgiving.com/matt-crouch-tpc' title='JustGiving - Sponsor me now!' target='_blank' class="button">Donate Now</a>
+			</div>
 		</div>
 	</div>
 </body>

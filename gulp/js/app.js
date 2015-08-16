@@ -1,55 +1,62 @@
-$( document ).ready(function() {
-	function fetchDonations() {
-		var current = $(".donate .current-amount .current");
-		var total = $(".donate .current-amount .total");
+function fetchDonations(fetchAutomatically) {
+	var current = $(".donate .current-amount .current");
+	var total = $(".donate .current-amount .total");
 
-		$.ajax({
-			url: "fetchdonations.php",
-			type: "GET",
-			success: function(data) {
-				current.removeClass("loading");
-				total.removeClass("loading");
+	$.ajax({
+		url: "fetchdonations.php",
+		type: "GET",
+		success: function(data) {
+			current.removeClass("loading");
+			total.removeClass("loading");
 
-				current.text("0.00").data('amount', "0.00").data('total', parseFloat(data.totalRaised).toFixed(2));
-				total.text(data.target);
+			current.text("0.00").data('amount', "0.00").data('total', parseFloat(data.totalRaised).toFixed(2));
+			total.text(data.target);
 
-				var ms = 1000;
-				var steps = 25;
-				var stepLength = ms / steps;
-				var stepAmount = data.totalRaised / steps;
+			var ms = 1000;
+			var steps = 25;
+			var stepLength = ms / steps;
+			var stepAmount = data.totalRaised / steps;
 
-				count();
+			count();
 
-				function count() {
-					var value = parseFloat(current.data('amount') + stepAmount);
-					if(value > current.data("total")) {
-						value = parseFloat(current.data("total"));
-					}
-					
-					current.data('amount', value);
-
-					current.text(value.toFixed(2));
-
-					if(value < current.data('total')) {
-						setTimeout(function(){
-							count();
-						}, stepLength);
-					}
+			function count() {
+				var value = parseFloat(current.data('amount') + stepAmount);
+				if(value > current.data("total")) {
+					value = parseFloat(current.data("total"));
 				}
-			},
-			error: function() {
-				//HANDLE ERROR
-				current.text("-");
-				total.text("-");
-			}
-		});
-	}
+				
+				current.data('amount', value);
 
+				current.text(value.toFixed(2));
+
+				if(value < current.data('total')) {
+					setTimeout(function(){
+						count();
+					}, stepLength);
+				}
+			}
+		},
+		error: function() {
+			//HANDLE ERROR
+			current.text("-");
+			total.text("-");
+		}
+	});
+
+	if(fetchAutomatically) {
+		setTimeout(function() {
+			fetchDonations();
+		}, 1800000); //Refetch every 30 minutes
+	}
+}
+
+$( document ).ready(function() {
 	if($("#map").length > 0) {
 		map();
+	} else {
+		//Not live
+		fetchDonations();
 	}
-
-	//fetchDonations(); //Comment out during testing to save needless requests
 });
 
 var map = function() {
@@ -97,6 +104,8 @@ var map = function() {
 			fetchNewWaypoints();
 			fetchNewSocial();
 			fetchNewScrobbles();
+
+			fetchDonations(fetchAutomatically);
 		});
 	}
 
@@ -355,7 +364,7 @@ var map = function() {
 				});
 
 				if(data.tracks.length > 0) {
-					animateNewTrack(tracks[0]);
+					animateNewTrack(data.tracks[0]);
 				}
 
 				if(fetchAutomatically) {
@@ -395,7 +404,7 @@ var map = function() {
 						"<img src='" + (data.image_url_large !== "" ? data.image_url_large : "build/images/live/icons/music-no-circle.svg") + "' alt='Now Playing' class='albumArt'/>" +
 					"</a>" +
 					"<div class='detail'>" +
-						"<span>Now Playing</span>" +
+						"<h3>Now Playing</h3>" +
 						"<ul>" +
 							"<li class='title'>" + data.title + "</li>" +
 							"<li class='artist'>" + data.artist + "</li>" +

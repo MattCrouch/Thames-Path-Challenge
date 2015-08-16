@@ -18,7 +18,7 @@
 	- Make sure it plays friendly when on smaller screen
 - Smarten up social InfoWindows
 - ~~Stylise map markers for social/points of interest~~
-- Add link to main page when live
+- ~~Add link to main page when live~~
 - Make sure social feeds don't pull in data outside of live time
 - ~~Add live donation tracker~~
 	- ~~Add donation button like on main page~~

@@ -59,12 +59,41 @@ function fetchDonations(fetchAutomatically) {
 	}
 }
 
+function checkLive(fetchAutomatically) {
+	$.ajax({
+		url: "checklive.php",
+		type: "GET",
+		success: function(data) {
+			if(data.live) {
+				console.log("LIVE!");
+				var banner = "<div class='live-banner'>" +
+								"Follow my progress right now! <a href='live' class='button'>Watch Live</a>" +
+							"</div>";
+
+				$("body").prepend(banner);
+			} else {
+				console.log("NOT LIVE :(");
+			}
+		},
+		error: function() {
+			//Die quietly...
+		}
+	});
+
+	if(fetchAutomatically) {
+		setTimeout(function() {
+			fetchDonations();
+		}, 1800000); //Refetch every 30 minutes
+	}
+}
+
 $( document ).ready(function() {
 	if($("#map").length > 0) {
 		map();
 	} else {
-		//Not live
+		//Not on live
 		fetchDonations();
+		checkLive();
 	}
 });
 

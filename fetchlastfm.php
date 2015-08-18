@@ -47,7 +47,7 @@ if($lastUpdated['last_updated'] < $updateTime) {
 
     //Set up cURL
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=stupler&api_key=" . LASTFM_API_KEY . "&format=json&from=" . $since); 
+    curl_setopt($ch, CURLOPT_URL, "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=stupler&api_key=" . LASTFM_API_KEY . "&format=json&extended=1&from=" . $since); 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($ch); 
     curl_close($ch);
@@ -87,8 +87,17 @@ if($lastUpdated['last_updated'] < $updateTime) {
             }
         }
 
+        if(!$imageSmall || !$imageLarge) {
+            if(!$imageSmall && isset($track->artist->image[1])) {
+                $imageSmall = $track->artist->image[1]->{"#text"};
+            }
+            if(!$imageLarge && isset($track->artist->image[3])) {
+                $imageLarge = $track->artist->image[3]->{"#text"};
+            }
+        }
+
         return "('" . 
-            (isset($track->artist) ? $conn->real_escape_string($track->artist->{"#text"}) : "") . 
+            (isset($track->artist) ? $conn->real_escape_string($track->artist->name) : "") . 
             "', " . "'" . $conn->real_escape_string($track->name) . 
             "', '" . (isset($track->album) ? $conn->real_escape_string($track->album->{"#text"}) : "") . 
             "', '" . $conn->real_escape_string($track->url) . 

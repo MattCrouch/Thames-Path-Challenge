@@ -122,7 +122,34 @@ var map = function() {
 		"social": null
 	};
 
-	var fetchAutomatically = false;
+	var fetchAutomatically = true;
+
+	var styles = [
+		{
+			"featureType": "poi",
+			"stylers": [
+				{ "visibility": "off" }
+			]
+		},
+		{
+			"featureType": "transit",
+			"stylers": [
+				{ "visibility": "off" }
+			]
+		},
+		{
+			"featureType": "poi.park",
+			"stylers": [
+				{ "visibility": "on" }
+			]
+		},
+		{
+			"featureType": "poi.attraction",
+			"stylers": [
+				{ "visibility": "on" }
+			]
+		}
+	];
 
 	function init() {
 		//Enable maps
@@ -131,6 +158,8 @@ var map = function() {
 				center: pointsOfInterest.start,
 				zoom: 14
 			});
+
+			map.setOptions({ styles: styles });
 
 			createIcons();
 

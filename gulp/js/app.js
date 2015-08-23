@@ -159,6 +159,9 @@ var map = function() {
 				zoom: 14,
 				mapTypeControl: false,
 				streetViewControl: false,
+				zoomControlOptions: {
+					position: google.maps.ControlPosition.TOP_LEFT
+				}
 			});
 
 			map.setOptions({ styles: styles });
@@ -175,6 +178,23 @@ var map = function() {
 			fetchNewScrobbles();
 
 			fetchDonations(fetchAutomatically);
+
+			$("body").click(function(e) {
+				animateNewTrack(tracks[0]);
+			});
+
+			$(".overlay a.show").click(function(e) {
+				var show = $(this);
+				var overlay = $(".overlay");
+
+				if(overlay.hasClass('show')) {
+					show.html("&#9650; Show Updates &#9650;");
+					overlay.removeClass('show');
+				} else {
+					show.html("&#9660; Hide Updates &#9660;");
+					overlay.addClass('show');
+				}
+			});
 		});
 	}
 

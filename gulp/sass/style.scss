@@ -255,10 +255,10 @@ section.donate {
 
 .current-amount {
 	span.current, span.total {
-		font-size: 2rem;
+		font-size: 2em;
 		font-weight: bold;
 		opacity: 1;				
-		transition: all 1s;
+		transition: opacity 1s;
 
 		&:before {
 			content: "£";
@@ -306,10 +306,18 @@ html.live .overlay {
 	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
 
+	a.show {
+		display: none;
+
+		text-align: center;
+		padding: 0.5em 0;
+		text-decoration: none;
+	}
+
 	div.lastfm, div.total {
 		float: left;
 		width: 50%;
-		padding: 0 20px;
+		padding: 0 1em;
 	}
 
 	a {
@@ -378,7 +386,7 @@ html.live .overlay {
 		.current-amount {
 			display: table-cell;
 			vertical-align: middle;
-			width: 50%;
+			width: 60%;
 		}
 
 		.donate-now {
@@ -388,11 +396,21 @@ html.live .overlay {
 	}
 }
 
+@media (max-width: 1200px) {
+	.live div.overlay {
+		font-size: 0.75em;
+	}
+}
+
 @media (max-width: 950px) {
 	section.diabetes-uk ul.aims, section.the-challenge ul.facts {
 		img {
 			display: none;
 		}
+	}
+
+	.live div.overlay .current-amount > * {
+		display: block;
 	}
 }
 
@@ -453,6 +471,44 @@ html.live .overlay {
 			}
 		}
 	}
+
+	html.live {
+		div.overlay {
+			background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(20%,rgba(0,0,0,0.4)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+			a.show {
+				display: block;
+			}
+
+			&:not(.show) {
+				padding: 0;
+
+				div.lastfm, div.total {
+					display: none;
+				}
+			}
+
+			height: auto;
+
+			div.lastfm, div.total {
+				width: 100%;
+			}
+
+			div.lastfm {
+				margin: 1em 0;
+			}
+
+			.current-amount span {
+				display: inline;
+			}
+		}
+	}
 }
 
 @media (max-width: 450px) {
@@ -462,5 +518,33 @@ html.live .overlay {
 
 	section.hero h1 {
 		font-size: 1rem;
+	}
+
+	html.live {
+		div.overlay {
+			div.total .current-amount, div.total .donate-now {
+				display: block;
+			}
+
+			div.total .current-amount {
+				width: 100%;
+				margin-bottom: 1em;
+			}
+
+			div.lastfm {
+				text-align: center;
+				position: static;
+
+				.nowPlaying {
+					width: 100%;
+					left: 0;
+					right: 0;
+
+					a {
+						display: none;
+					}
+				}
+			}
+		}
 	}
 }

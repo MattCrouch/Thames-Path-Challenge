@@ -156,7 +156,9 @@ var map = function() {
 		google.maps.event.addDomListener(window, 'load', function() {
 			map = new google.maps.Map($("#map")[0], {
 				center: pointsOfInterest.start,
-				zoom: 14
+				zoom: 14,
+				mapTypeControl: false,
+				streetViewControl: false,
 			});
 
 			map.setOptions({ styles: styles });

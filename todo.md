@@ -15,7 +15,7 @@
 - ~~Connect Last.fm~~
 	- ~~Add 'now playing' section to marker/fixed div~~
 	- ~~Add animation to now playing switch~~
-	- Make sure it plays friendly when on smaller screen
+	- ~~Make sure it plays friendly when on smaller screen~~
 - Smarten up social InfoWindows
 - ~~Stylise map markers for social/points of interest~~
 - ~~Add link to main page when live~~

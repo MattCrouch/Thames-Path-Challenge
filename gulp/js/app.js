@@ -179,10 +179,6 @@ var map = function() {
 
 			fetchDonations(fetchAutomatically);
 
-			$("body").click(function(e) {
-				animateNewTrack(tracks[0]);
-			});
-
 			$(".overlay a.show").click(function(e) {
 				var show = $(this);
 				var overlay = $(".overlay");

@@ -1,8 +1,10 @@
 <?php
+header("Content-Type: text/html; charset=utf-8");
 include("credentials.php");
 
 //Set up connection to database
 $conn = new mysqli(SERVER_NAME, SERVER_USERNAME, SERVER_PASS, DB_NAME);
+$conn->set_charset("utf8");
 
 // Check connection
 if ($conn->connect_error) {

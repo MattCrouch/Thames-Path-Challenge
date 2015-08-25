@@ -22,7 +22,7 @@ $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-    	if($row['value'] == 1) {
+    	if($row['value'] !== "0") {
     		$values['live'] = true;
     	}
         

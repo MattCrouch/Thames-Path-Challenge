@@ -5,8 +5,8 @@
 - ~~Create link to DB~~
 - ~~Store locations in DB~~
 - ~~Send locations to live tracker when available~~
-- Connect RunKeeper
-	- Track only one specific Live activity
+- ~~Connect RunKeeper~~
+	- ~~Track only one specific Live activity~~
 	- Create backend to control which Live activity to track
 - ~~Connect Twitter~~
 	- ~~Geolocate and add to tracking stream~~

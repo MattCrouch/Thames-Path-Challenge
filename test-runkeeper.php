@@ -3,7 +3,7 @@ include("credentials.php");
 
 //Set up cURL
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.runkeeper.com/fitnessActivities/642284955"); 
+curl_setopt($ch, CURLOPT_URL, "https://api.runkeeper.com/fitnessActivities/644477147"); 
 // curl_setopt($ch, CURLOPT_POST, 1);
 // curl_setopt($ch, CURLOPT_POSTFIELDS,
 //             "");

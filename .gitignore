@@ -3,3 +3,5 @@ gulp/node_modules
 credentials.php
 *.scssc
 gpx/*
+admin/.htaccess
+admin/.htpasswd

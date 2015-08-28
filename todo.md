@@ -7,7 +7,7 @@
 - ~~Send locations to live tracker when available~~
 - ~~Connect RunKeeper~~
 	- ~~Track only one specific Live activity~~
-	- Create backend to control which Live activity to track
+	- ~~Create backend to control which Live activity to track~~
 - ~~Connect Twitter~~
 	- ~~Geolocate and add to tracking stream~~
 - ~~Connect Instagram~~

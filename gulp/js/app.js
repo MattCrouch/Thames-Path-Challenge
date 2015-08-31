@@ -256,7 +256,7 @@ var map = function() {
 
 		icons.ping = {
 			anchor: new google.maps.Point(5, 5),
-			url: imagePath + "live/icons/ping.svg",
+			url: imagePath + "live/icons/ping-head.svg",
 			scaledSize: new google.maps.Size(10,10)
 		};
 	}

@@ -122,7 +122,13 @@ var map = function() {
 		"social": null
 	};
 
+	//Holds if/when we should be checking for new updates
 	var fetchAutomatically = true;
+	var fetchFrequency = {
+		"waypoints": 60000,
+		"social": 300000,
+		"scrobbles": 300000
+	};
 
 	var styles = [
 		{
@@ -397,12 +403,17 @@ var map = function() {
 				if(fetchAutomatically) {
 					setTimeout(function() {
 						fetchNewWaypoints();
-					}, 60000); //Refetch every minute
+					}, fetchFrequency.waypoints);
 				}
 			},
 			error: function() {
-				//HANDLE ERROR
-				alert("Can't get the location at the moment :(");
+				console.log("Can't get the location at the moment :(");
+
+				if(fetchAutomatically) {
+					setTimeout(function() {
+						fetchNewWaypoints();
+					}, fetchFrequency.waypoints);
+				}
 			}
 		});
 	}
@@ -420,16 +431,15 @@ var map = function() {
 				$.each(data.posts, function(key, post) {
 					createNewSocial(post);
 				});
+			},
+			error: function() {
+				console.log("Can't get social feeds :(");
 
 				if(fetchAutomatically) {
 					setTimeout(function() {
 						fetchNewSocial();
-					}, 300000); //Refetch every 5 minutes
+					}, fetchFrequency.social);
 				}
-			},
-			error: function() {
-				//HANDLE ERROR
-				alert("Can't get social feeds :(");
 			}
 		});
 	}
@@ -451,16 +461,15 @@ var map = function() {
 				if(data.tracks.length > 0) {
 					animateNewTrack(data.tracks[0]);
 				}
+			},
+			error: function() {
+				console.log("Can't get scrobbles :(");
 
 				if(fetchAutomatically) {
 					setTimeout(function() {
 						fetchNewScrobbles();
-					}, 300000); //Refetch every 5 minutes
+					}, fetchFrequency.scrobbles);
 				}
-			},
-			error: function() {
-				//HANDLE ERROR
-				alert("Can't get scrobbles :(");
 			}
 		});
 	}

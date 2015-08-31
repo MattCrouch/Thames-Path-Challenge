@@ -5,7 +5,7 @@ gulp.task('js', function () {
 	gulp.src('js/*.js')
 		.pipe(plugins.jshint())
 		.pipe(plugins.jshint.reporter('default'))
-		//.pipe(plugins.uglify())
+		.pipe(plugins.uglify())
 		.pipe(plugins.concat('min.js'))
 		.pipe(gulp.dest('../build/js'));
 });

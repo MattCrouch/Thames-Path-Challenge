@@ -63,7 +63,7 @@
 /* !important makes me sad inside... Necessary for cross-browser overriding of Google Maps markers */
 @-moz-keyframes currentLocation {
 	0% {
-  		-webkit-transform: scale(0) !important;
+  		-webkit-transform: scale(0);
   		transform: scale(0);
   		opacity: 0 !important;
   	}
@@ -81,7 +81,7 @@
 
 @-webkit-keyframes currentLocation {
 	0% {
-  		-webkit-transform: scale(0) !important;
+  		-webkit-transform: scale(0);
   		transform: scale(0);
   		opacity: 0 !important;
   	}
@@ -99,7 +99,7 @@
 
 @keyframes currentLocation {
 	0% {
-  		-webkit-transform: scale(0) !important;
+  		-webkit-transform: scale(0);
   		transform: scale(0);
   		opacity: 0 !important;
   	}

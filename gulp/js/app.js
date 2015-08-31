@@ -187,7 +187,7 @@ var map = function() {
 
 			$(".overlay a.show").click(function(e) {
 				e.preventDefault();
-				
+
 				var show = $(this);
 				var overlay = $(".overlay");
 
@@ -312,7 +312,10 @@ var map = function() {
 		var waypoint = {
 			lat: data.lat,
 			lng: data.lng,
-			timestamp: data.timestamp
+			timestamp: data.timestamp,
+			getPosition: function() {
+				return new google.maps.LatLng(this.lat,this.lng);
+			}
 		};
 
 		routeWaypoints.push(waypoint);
@@ -401,6 +404,10 @@ var map = function() {
 				$.each(data.coordinates, function(key, coords) {
 					createNewWaypoint(coords);
 				});
+
+				if(routeWaypoints.length > 0) {
+					focusLiveTracking(routeWaypoints);
+				}
 
 				if(fetchAutomatically) {
 					setTimeout(function() {
@@ -495,6 +502,18 @@ var map = function() {
 			boundary.extend(markerArray[i].getPosition());
 		}
 		map.fitBounds(boundary);
+	}
+
+	function focusLiveTracking(markerArray) {
+		//Zoom on current position, and recent trail
+		var recentMarkers = markerArray.slice(0);
+		var recentCount = 100;
+
+		if(recentMarkers.length > recentCount) {
+			recentMarkers = recentMarkers.splice(recentMarkers.length - recentCount);
+		}
+
+		realignWindow(recentMarkers);
 	}
 
 	function generateSocialMarkup(data) {

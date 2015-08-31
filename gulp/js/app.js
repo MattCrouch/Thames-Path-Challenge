@@ -128,7 +128,7 @@ var map = function() {
 	var fetchFrequency = {
 		"waypoints": 60000,
 		"social": 300000,
-		"scrobbles": 300000
+		"scrobbles": 180000
 	};
 
 	var styles = [

@@ -49,9 +49,9 @@ if($runkeeperId) {
     $newRows = array(); // Holds any new entries
     $lastestUpdate = NULL; //Holds the Runkeeper timestamp of the most recent update for saving later
 
-    //Create datetime for a minute ago
+    //Create datetime for 45 seconds ago
     $now = new DateTime();
-    $dateInterval = new DateInterval("PT1M"); //1 min interval
+    $dateInterval = new DateInterval("PT45S"); //45 sec interval
     $updateTime = clone $now;
     $updateTime->sub($dateInterval);
 

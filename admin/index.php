@@ -48,8 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $conn->multi_query($updates);
-    echo "UPDATED";
-
     
     header('Location: index.php'); //Makes sure we don't land back on a POST page
 }

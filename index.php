@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="Matt takes on the Thames Path Challenge" />
 	<meta property="og:site_name" content="MattCrouch.net"/>
 	<meta property="og:url" content="http://www.mattcrouch.net/tpc/" />

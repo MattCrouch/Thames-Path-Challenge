@@ -24,6 +24,7 @@ html {
 	font-size: $base-size;
 	background-color: $background-color;
 	font-family: "Lato", "Helvetica", "Arial", sans-serif;
+	-webkit-text-size-adjust: 100%;
 }
 
 h1, h2, h3, section.hero div.date {
@@ -416,7 +417,7 @@ html.live .overlay {
 
 @media (max-width: 675px) {
 	html {
-		font-size: $base-size * 1.1;
+		//font-size: $base-size * 1.1;
 	}
 
 	section, section.hero > div {
@@ -508,6 +509,12 @@ html.live .overlay {
 				display: inline;
 			}
 		}
+	}
+
+	.live-banner a {
+		display: block;
+		margin-left: 0;
+		margin: 1em 2em 0;
 	}
 }
 

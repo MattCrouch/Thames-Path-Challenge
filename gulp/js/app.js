@@ -82,7 +82,7 @@ function checkLive(fetchAutomatically) {
 
 	if(fetchAutomatically) {
 		setTimeout(function() {
-			fetchDonations();
+			checkLive();
 		}, 1800000); //Refetch every 30 minutes
 	}
 }
@@ -98,7 +98,7 @@ $( document ).ready(function() {
 });
 
 var map = function() {
-	var imagePath = "/build/images/"; //Change this if path changes
+	var imagePath = "build/images/"; //Change this if path changes
 	var map;
 	var markers = {
 		"pointsOfInterest": [],
@@ -186,6 +186,8 @@ var map = function() {
 			fetchDonations(fetchAutomatically);
 
 			$(".overlay a.show").click(function(e) {
+				e.preventDefault();
+				
 				var show = $(this);
 				var overlay = $(".overlay");
 
@@ -431,6 +433,12 @@ var map = function() {
 				$.each(data.posts, function(key, post) {
 					createNewSocial(post);
 				});
+
+				if(fetchAutomatically) {
+					setTimeout(function() {
+						fetchNewSocial();
+					}, fetchFrequency.social);
+				}
 			},
 			error: function() {
 				console.log("Can't get social feeds :(");
@@ -460,6 +468,12 @@ var map = function() {
 
 				if(data.tracks.length > 0) {
 					animateNewTrack(data.tracks[0]);
+				}
+
+				if(fetchAutomatically) {
+					setTimeout(function() {
+						fetchNewSocial();
+					}, fetchFrequency.social);
 				}
 			},
 			error: function() {

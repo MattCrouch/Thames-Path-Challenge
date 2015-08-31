@@ -1,5 +1,6 @@
 @import "includes/settings";
 @import "includes/meyer-reset";
+@import "includes/animations";
 
 @font-face {
     font-family: 'Florence Sans';
@@ -87,6 +88,24 @@ a.button {
 
 .clear {
 	clear: both;
+}
+
+.live-banner {
+	position: fixed;
+	width:100%;
+	text-align: center;
+	background-color: $accent2;
+	color: $header-color;
+	padding: 1em 0;
+	z-index: 2;
+
+	-moz-animation: liveNowSlide 1s forwards;
+	-webkit-animation: liveNowSlide 1s forwards;
+	animation: liveNowSlide 1s forwards;
+
+	a {
+		margin-left: 2em;
+	}
 }
 
 section.hero {
@@ -213,23 +232,6 @@ section.donate {
 			padding: 1rem 0;	
 		}
 
-		.current-amount {
-			span.current, span.total {
-				font-size: 2rem;
-				font-weight: bold;
-				opacity: 1;				
-				transition: all 1s;
-
-				&:before {
-					content: "£";
-				}
-
-				&.loading {
-					opacity: 0.25;
-				}
-			}
-		}
-
 		.ways-to-donate {
 			.justgiving {
 				margin-top: 1rem;
@@ -251,11 +253,164 @@ section.donate {
 	}
 }
 
+.current-amount {
+	span.current, span.total {
+		font-size: 2em;
+		font-weight: bold;
+		opacity: 1;				
+		transition: opacity 1s;
+
+		&:before {
+			content: "£";
+		}
+
+		&.loading {
+			opacity: 0.25;
+		}
+	}
+}
+
+/* LIVE TRACKER */
+
+html.live, html.live body {
+	height: 100%;
+}
+
+html.live .gm-style-iw {
+	div.social {
+		//Style as appropriate
+		.caption {
+			text-align: center;
+		}
+	}
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+}
+
+html.live .overlay {
+	position: absolute;
+	bottom: 0;
+	width:100%;
+	pointer-events: none;
+	padding: 20px 0;
+	color: $header-color;
+	
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
+
+	a.show {
+		display: none;
+
+		text-align: center;
+		padding: 0.5em 0;
+		text-decoration: none;
+	}
+
+	div.lastfm, div.total {
+		float: left;
+		width: 50%;
+		padding: 0 1em;
+	}
+
+	a {
+		pointer-events: auto;
+	}
+
+	div.total {
+		float: right;
+	}
+
+	div.lastfm {
+		position: relative;
+		height: 6em;
+		.nowPlaying {
+			position: absolute;
+			display: table;
+
+			&.out {
+				-moz-animation: swapOut 0.5s forwards;
+				-webkit-animation: swapOut 0.5s forwards;
+				animation: swapOut 0.5s forwards;
+			}
+
+			&.in {
+				opacity: 0;
+				-moz-animation: swapOut 0.5s forwards reverse;
+				-webkit-animation: swapOut 0.5s forwards reverse;
+				animation: swapOut 0.5s forwards reverse;
+			}
+
+			a {
+				float: left;
+				margin-right: 1em;
+				overflow: hidden;
+			}
+
+			.detail {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			.albumArt {
+				border: 0.5rem solid $accent1;
+				border-radius: 100px;
+				width: 6em;
+				height: 6em;
+				background-color: $header-color;
+
+			}
+
+			.title {
+				font-size: 1.5em;
+			}
+
+			.artist, .album {
+				font-size: 0.75em;
+			}
+		}
+	}
+
+	div.total {
+		display: table;
+		height: 6em;
+		text-align: center;
+
+		.current-amount {
+			display: table-cell;
+			vertical-align: middle;
+			width: 60%;
+		}
+
+		.donate-now {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.live div.overlay {
+		font-size: 0.75em;
+	}
+}
+
 @media (max-width: 950px) {
 	section.diabetes-uk ul.aims, section.the-challenge ul.facts {
 		img {
 			display: none;
 		}
+	}
+
+	.live div.overlay .current-amount > * {
+		display: block;
 	}
 }
 
@@ -316,6 +471,44 @@ section.donate {
 			}
 		}
 	}
+
+	html.live {
+		div.overlay {
+			background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(20%,rgba(0,0,0,0.4)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 20%,rgba(0,0,0,0.65) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+			a.show {
+				display: block;
+			}
+
+			&:not(.show) {
+				padding: 0;
+
+				div.lastfm, div.total {
+					display: none;
+				}
+			}
+
+			height: auto;
+
+			div.lastfm, div.total {
+				width: 100%;
+			}
+
+			div.lastfm {
+				margin: 1em 0;
+			}
+
+			.current-amount span {
+				display: inline;
+			}
+		}
+	}
 }
 
 @media (max-width: 450px) {
@@ -325,5 +518,33 @@ section.donate {
 
 	section.hero h1 {
 		font-size: 1rem;
+	}
+
+	html.live {
+		div.overlay {
+			div.total .current-amount, div.total .donate-now {
+				display: block;
+			}
+
+			div.total .current-amount {
+				width: 100%;
+				margin-bottom: 1em;
+			}
+
+			div.lastfm {
+				text-align: center;
+				position: static;
+
+				.nowPlaying {
+					width: 100%;
+					left: 0;
+					right: 0;
+
+					a {
+						display: none;
+					}
+				}
+			}
+		}
 	}
 }

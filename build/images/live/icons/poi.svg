@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px"
+	 height="100px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+<g>
+	<g>
+		<path style="fill:#FFFFFF;" d="M50,95C25.187,95,5,74.813,5,50C5,25.187,25.187,5,50,5c24.813,0,45,20.187,45,45
+			C95,74.813,74.813,95,50,95z"/>
+		<path style="fill:none;stroke:#0F3670;stroke-width:10;stroke-miterlimit:10;" d="M50,95C25.187,95,5,74.813,5,50
+			C5,25.187,25.187,5,50,5c24.813,0,45,20.187,45,45C95,74.813,74.813,95,50,95z"/>
+	</g>
+</g>
+<g>
+	<polygon style="fill:#43ACE5;stroke:#43ACE5;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:10;" points="50,22.189 
+		58.386,39.181 77.139,41.907 63.569,55.133 66.772,73.811 50,64.992 33.228,73.811 36.431,55.133 22.861,41.907 41.614,39.181 	"/>
+</g>
+</svg>

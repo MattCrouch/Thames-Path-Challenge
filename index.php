@@ -108,9 +108,4 @@
 		</div>
 	</section>
 </body>
-</html>et='_blank' class="button">Donate Now</a>
-			</div>
-		</div>
-	</section>
-</body>
 </html>

@@ -102,7 +102,8 @@ var map = function() {
 	var map;
 	var markers = {
 		"pointsOfInterest": [],
-		"social": []
+		"social": [],
+		"currentLocation": null
 	};
 	var icons = {};
 	var infoWindows = [];
@@ -252,6 +253,12 @@ var map = function() {
 			url: imagePath + "live/icons/instagram.svg",
 			scaledSize: new google.maps.Size(30,30)
 		};
+
+		icons.ping = {
+			anchor: new google.maps.Point(5, 5),
+			url: imagePath + "live/icons/ping.svg",
+			scaledSize: new google.maps.Size(10,10)
+		};
 	}
 
 	function showPointsOfInterest() {
@@ -331,7 +338,8 @@ var map = function() {
 		var marker = new google.maps.Marker({
 			position: new google.maps.LatLng(lat,lng),
 			title: title,
-			icon: icon
+			icon: icon,
+			optimized: false
 		});
 
 		marker.setMap(map);
@@ -404,6 +412,8 @@ var map = function() {
 				$.each(data.coordinates, function(key, coords) {
 					createNewWaypoint(coords);
 				});
+
+				updateBeacon(routeWaypoints);
 
 				if(routeWaypoints.length > 0) {
 					focusLiveTracking(routeWaypoints);
@@ -514,6 +524,17 @@ var map = function() {
 		}
 
 		realignWindow(recentMarkers);
+	}
+
+	function updateBeacon(markerArray) {
+		var location = markerArray[markerArray.length - 1];
+
+		if(markers.currentLocation) {
+			markers.currentLocation.setPosition(location.getPosition());
+		} else {
+			var marker = createNewMarker(location.lat, location.lng, "Current Location", icons.ping);
+			markers.currentLocation = marker;
+		}
 	}
 
 	function generateSocialMarkup(data) {

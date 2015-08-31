@@ -289,6 +289,20 @@ html.live .gm-style-iw {
 #map {
 	height: 100%;
 	width: 100%;
+
+	div.gmnoprint[title="Current Location"] {
+		opacity: 1 !important;
+		background-image: url("/build/images/live/icons/ping.svg");
+		background-size: cover;
+
+		-moz-animation: currentLocation 2s infinite;
+		-webkit-animation: currentLocation 2s infinite;
+		animation: currentLocation 2s infinite;
+
+		img {
+			display: none;
+		}
+	}
 }
 
 html.live .overlay {

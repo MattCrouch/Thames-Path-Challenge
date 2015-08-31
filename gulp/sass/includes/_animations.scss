@@ -59,3 +59,51 @@
   		margin-top: 0;
 	}
 }
+
+@-moz-keyframes currentLocation {
+	0% {
+  		transform: scale(0);
+  		opacity: 0 !important;
+  	}
+
+  	20% {
+  		opacity: 1 !important;
+  	}
+  
+	100% {
+  		transform: scale(5);
+  		opacity: 0 !important;
+	}
+}
+
+@-webkit-keyframes currentLocation {
+	0% {
+  		transform: scale(0);
+  		opacity: 0 !important;
+  	}
+
+  	20% {
+  		opacity: 1 !important;
+  	}
+  
+	100% {
+  		transform: scale(5);
+  		opacity: 0 !important;
+	}
+}
+
+@keyframes currentLocation {
+	0% {
+  		transform: scale(0);
+  		opacity: 0 !important;
+  	}
+
+  	20% {
+  		opacity: 1 !important;
+  	}
+  
+	100% {
+  		transform: scale(5);
+  		opacity: 0 !important;
+	}
+}

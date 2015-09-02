@@ -48,9 +48,15 @@ if($lastUpdated['last_twitter_check']['last_updated'] < $updateTime) {
     /* Fetch new Twitter data */
     $sinceId = $lastUpdated['last_twitter_check']['value'];
 
+    $url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stupler&exclude_replies=true&trim_user=true";
+
+    if($sinceId > 0) {
+        $url .= "&since_id=" . $sinceId;
+    }
+
     //Set up cURL
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stupler&exclude_replies=true&trim_user=true&since_id=" . $sinceId); 
+    curl_setopt($ch, CURLOPT_URL, $url); 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Authorization: Bearer ' . TWITTER_APPLICATION_TOKEN,

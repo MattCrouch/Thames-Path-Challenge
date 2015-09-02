@@ -278,10 +278,16 @@ html.live, html.live body {
 }
 
 html.live .gm-style-iw {
+	text-align: center;
+
 	div.social {
-		//Style as appropriate
+		img {
+			width: 320px;
+			height: auto;
+		}
+
 		.caption {
-			text-align: center;
+			
 		}
 	}
 }
@@ -523,6 +529,14 @@ html.live .overlay {
 				display: inline;
 			}
 		}
+
+		html.live {
+			.gm-style-iw div.social {
+				img {
+					width: 250px;
+				}
+			}
+		}
 	}
 
 	.live-banner a {
@@ -565,6 +579,12 @@ html.live .overlay {
 						display: none;
 					}
 				}
+			}
+		}
+		
+		.gm-style-iw div.social {
+			img {
+				width: 200px;
 			}
 		}
 	}

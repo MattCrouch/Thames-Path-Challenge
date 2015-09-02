@@ -529,6 +529,10 @@ var map = function() {
 	function updateBeacon(markerArray) {
 		var location = markerArray[markerArray.length - 1];
 
+		if(!location) {
+			return false;
+		}
+
 		if(markers.currentLocation) {
 			markers.currentLocation.setPosition(location.getPosition());
 		} else {

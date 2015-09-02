@@ -16,7 +16,7 @@
 	- ~~Add 'now playing' section to marker/fixed div~~
 	- ~~Add animation to now playing switch~~
 	- ~~Make sure it plays friendly when on smaller screen~~
-- Smarten up social InfoWindows
+- ~~Smarten up social InfoWindows~~
 - ~~Stylise map markers for social/points of interest~~
 - ~~Add link to main page when live~~
 - Make sure social feeds don't pull in data outside of live time

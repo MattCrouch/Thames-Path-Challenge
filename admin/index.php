@@ -19,31 +19,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //RunKeeper
     if(isset($_POST['runkeeper'])) {
         if(isset($_POST['runkeeper']['live']) && $_POST['runkeeper']['live'] !== "") {
-            $updates .= "UPDATE tpc SET value = " . (int)$_POST['runkeeper']['live'] . " WHERE name = 'live';";
+            $updates .= "UPDATE tpc SET value = " . (int)$_POST['runkeeper']['live'] . ", last_updated = NOW() WHERE name = 'live';";
         }
         if(isset($_POST['runkeeper']['clear'])) {
-            $updates .= "DELETE FROM tpc_route;";
+            $updates .= "DELETE FROM tpc_route; UPDATE tpc SET value = 0 WHERE name = 'last_runkeeper_check';";
         }
     }
 
     //Twitter
     if(isset($_POST['twitter'])) {
         if(isset($_POST['twitter']['clear'])) {
-            $updates .= "DELETE FROM tpc_social WHERE source = 'twitter'; UPDATE tpc SET value = 0 WHERE name = 'last_twitter_check';";
+            $updates .= "DELETE FROM tpc_social WHERE source = 'twitter'; UPDATE tpc SET value = 0, last_updated = '1970-01-01 00:00:00' WHERE name = 'last_twitter_check';";
         }
     }
 
     //Instagram
     if(isset($_POST['instagram'])) {
         if(isset($_POST['instagram']['clear'])) {
-            $updates .= "DELETE FROM tpc_social WHERE source = 'instagram'; UPDATE tpc SET value = 0 WHERE name = 'last_instagram_check';";
+            $updates .= "DELETE FROM tpc_social WHERE source = 'instagram'; UPDATE tpc SET value = 0, last_updated = '1970-01-01 00:00:00' WHERE name = 'last_instagram_check';";
         }
     }
 
     //Last.fm
     if(isset($_POST['lastfm'])) {
         if(isset($_POST['lastfm']['clear'])) {
-            $updates .= "DELETE FROM tpc_last_fm; UPDATE tpc SET value = 0 WHERE name = 'last_last_fm_check';";
+            $updates .= "DELETE FROM tpc_last_fm; UPDATE tpc SET value = 0, last_updated = '1970-01-01 00:00:00' WHERE name = 'last_last_fm_check';";
         }
     }
 

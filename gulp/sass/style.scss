@@ -23,12 +23,12 @@
 html {
 	font-size: $base-size;
 	background-color: $background-color;
-	font-family: "Lato", "Helvetica", "Arial", sans-serif;
+	font-family: $font-family;
 	-webkit-text-size-adjust: 100%;
 }
 
 h1, h2, h3, section.hero div.date {
-	font-family: "Florence Sans", "Helvetica", "Arial", sans-serif;
+	font-family: $header-font-family;
 	text-transform: uppercase;
 }
 
@@ -281,6 +281,7 @@ html.live .gm-style-iw {
 	text-align: center;
 
 	div.social {
+		font-family: $font-family;
 		img {
 			width: 320px;
 			height: auto;

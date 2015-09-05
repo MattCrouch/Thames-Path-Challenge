@@ -415,7 +415,7 @@ var map = function() {
 
 				updateBeacon(routeWaypoints);
 
-				if(routeWaypoints.length > 0) {
+				if(data.coordinates.length > 0 && routeWaypoints.length > 0) {
 					focusLiveTracking(routeWaypoints);
 				}
 

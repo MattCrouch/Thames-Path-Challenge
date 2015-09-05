@@ -285,6 +285,9 @@ html.live .gm-style-iw {
 		img {
 			width: 320px;
 			height: auto;
+			border: 0.5rem solid $accent1;
+			border-radius: 0.5rem;
+			margin: 0.5rem;
 		}
 
 		.caption {

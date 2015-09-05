@@ -48,7 +48,7 @@ if($lastUpdated['last_twitter_check']['last_updated'] < $updateTime) {
     /* Fetch new Twitter data */
     $sinceId = $lastUpdated['last_twitter_check']['value'];
 
-    $url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=stupler&exclude_replies=true&trim_user=true";
+    $url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" . TWITTER_SCREEN_NAME . "&exclude_replies=true&trim_user=true";
 
     if($sinceId > 0) {
         $url .= "&since_id=" . $sinceId;

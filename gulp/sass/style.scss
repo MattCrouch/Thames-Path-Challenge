@@ -297,8 +297,8 @@ html.live .gm-style-iw {
 	width: 100%;
 
 	div.gmnoprint[title="Current Location"] {
-		opacity: 1 !important;
-		background-image: url("/build/images/live/icons/ping.svg");
+		opacity: 1;
+		background-image: url("../images/live/icons/ping.svg");
 		background-size: cover;
 
 		-moz-animation: currentLocation 2s infinite;

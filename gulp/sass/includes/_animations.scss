@@ -63,19 +63,17 @@
 /* !important makes me sad inside... Necessary for cross-browser overriding of Google Maps markers */
 @-moz-keyframes currentLocation {
 	0% {
-  		-webkit-transform: scale(0);
   		transform: scale(0);
-  		opacity: 0 !important;
+  		opacity: 0;
   	}
 
   	20% {
-  		opacity: 1 !important;
+  		opacity: 1;
   	}
   
 	100% {
-		-webkit-transform: scale(5) !important;
   		transform: scale(5);
-  		opacity: 0 !important;
+  		opacity: 0;
 	}
 }
 
@@ -83,17 +81,17 @@
 	0% {
   		-webkit-transform: scale(0);
   		transform: scale(0);
-  		opacity: 0 !important;
+  		opacity: 0;
   	}
 
   	20% {
-  		opacity: 1 !important;
+  		opacity: 1;
   	}
   
 	100% {
-		-webkit-transform: scale(5) !important;
+		-webkit-transform: scale(5);
   		transform: scale(5);
-  		opacity: 0 !important;
+  		opacity: 0;
 	}
 }
 
@@ -101,16 +99,16 @@
 	0% {
   		-webkit-transform: scale(0);
   		transform: scale(0);
-  		opacity: 0 !important;
+  		opacity: 0;
   	}
 
   	20% {
-  		opacity: 1 !important;
+  		opacity: 1;
   	}
   
 	100% {
-		-webkit-transform: scale(5) !important;
+		-webkit-transform: scale(5);
   		transform: scale(5);
-  		opacity: 0 !important;
+  		opacity: 0;
 	}
 }

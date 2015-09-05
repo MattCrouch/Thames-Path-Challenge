@@ -542,10 +542,13 @@ var map = function() {
 	}
 
 	function generateSocialMarkup(data) {
-		html =  "<div class='social " + data.source + "'>" +
-					"<a href='" + data.url + "' target='_blank'><img src='" + data.image + "'/></a>" +
-					"<p class='caption'>" + data.text + "</p>" +
-				"</div>";
+		html =  "<div class='social " + data.source + "'>";
+
+		if(data.image !== "") {
+			html +=	"<a href='" + data.url + "' target='_blank'><img src='" + data.image + "'/></a>";
+		}
+		html +=	"<p class='caption'>" + data.text + "</p>" +
+			"</div>";
 
 		return html;
 	}

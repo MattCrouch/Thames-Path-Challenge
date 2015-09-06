@@ -15,11 +15,12 @@ $values = array();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //Update
     $updates = "";
+    $now = date("Y-m-d H:i:s");
 
     //RunKeeper
     if(isset($_POST['runkeeper'])) {
         if(isset($_POST['runkeeper']['live']) && $_POST['runkeeper']['live'] !== "") {
-            $updates .= "UPDATE tpc SET value = " . (int)$_POST['runkeeper']['live'] . ", last_updated = NOW() WHERE name = 'live';";
+            $updates .= "UPDATE tpc SET value = " . (int)$_POST['runkeeper']['live'] . ", last_updated = " . $now . " WHERE name = 'live';";
         }
         if(isset($_POST['runkeeper']['clear'])) {
             $updates .= "DELETE FROM tpc_route; UPDATE tpc SET value = 0 WHERE name = 'last_runkeeper_check';";

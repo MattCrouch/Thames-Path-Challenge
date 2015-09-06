@@ -348,7 +348,7 @@ var map = function() {
 	}
 
 	function createNewSocial(data) {
-		var marker = createNewMarker(data.lat, data.lng, "this is a post from " + data.source, icons[data.source]);
+		var marker = createNewMarker(data.lat, data.lng, data.source, icons[data.source]);
 
 		//Attach an info window to marker
 		var infoWindow = new google.maps.InfoWindow({

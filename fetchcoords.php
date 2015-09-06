@@ -57,7 +57,7 @@ if($runkeeperId) {
 
     if($lastUpdated['last_updated'] < $updateTime) {
         /* Fetch new waypoints */
-        $since = strtotime($lastUpdated['value']);
+        $since = $lastUpdated['value'];
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://api.runkeeper.com/fitnessActivities/" . (int)$runkeeperId);
@@ -81,8 +81,8 @@ if($runkeeperId) {
                 continue;
             }
 
-            if(!$lastestUpdate || $lastestUpdate < $path->timestamp) {
-                $lastestUpdate = (int)$path->timestamp;
+            if($since < $path->timestamp) {
+                $since = (int)$path->timestamp;
             }
 
             $timestamp = new DateTime();
@@ -95,7 +95,7 @@ if($runkeeperId) {
         }
 
         //Update last checked
-        $sql = "UPDATE tpc SET " . (isset($lastestUpdate) ? "value = '" . $lastestUpdate . "', " : "") . "last_updated = '" . date("Y-m-d H:i:s") . "' WHERE name = 'last_runkeeper_check'";
+        $sql = "UPDATE tpc SET " . (isset($since) ? "value = '" . $since . "', " : "") . "last_updated = '" . date("Y-m-d H:i:s") . "' WHERE name = 'last_runkeeper_check'";
         $update = $conn->query($sql);
     }
 

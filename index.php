@@ -65,7 +65,7 @@
 				</li>
 				<li>
 					<img src="build/images/icons/icon-stopwatch.svg" alt="Stopwatch Icon"/>
-					<p>At an average page this should take just under 9 hours to complete. It could be some more if I can't stop taking photos along the way.</p>
+					<p>At an average pace this should take just under 9 hours to complete. It could be some more if I can't stop taking photos along the way.</p>
 				</li>
 				<li>
 					<img src="build/images/icons/icon-pound.svg" alt="Pound Sign Icon"/>

@@ -7,9 +7,8 @@
 	<meta property="og:title" content="Matt takes on the Thames Path Challenge" />
 	<meta property="og:site_name" content="MattCrouch.net"/>
 	<meta property="og:url" content="http://www.mattcrouch.net/tpc/live" />
-	<meta property="article:author" content="https://www.facebook.com/matt.crouch" />
 	<meta property="og:description" content="Track me live! I'm doing the Thames Path Challenge - walking 50km along the Thames to raise money for Diabetes UK." />
-	<meta property="og:image" content="http://mattcrouch.net/tpc/build/images/diabetes-uk-logo.png" />
+	<meta property="og:image" content="http://mattcrouch.net/tpc/build/images/hero-image.jpg" />
 	<title>LIVE | Matt takes on the Thames Path Challenge</title>
 	<link rel="stylesheet" type="text/css" href="build/css/style.css" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>

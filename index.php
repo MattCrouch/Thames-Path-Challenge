@@ -23,7 +23,7 @@
 			</h1>
 			<div class="date">12<sup>th</sup> September 2015</div>
 			<div>
-				<a href="#donate" class="button">Donate</a>
+				<a href="live" class="button">See how I got on!</a>
 			</div>
 		</div>
 	</section>
@@ -72,8 +72,6 @@
 					<p>Over 4000 people will take part in the Thames Path Challenge this year. All these aim to raise £2 million for charities and good causes across the UK.</p>
 				</li>
 			</ul>
-
-			<p class="clear">On the day you'll be able to track my progress live on site alongside any photos and tweets I might make.</p>
 		</div>
 	</section>
 
@@ -82,28 +80,17 @@
 			<h2>Donate</h2>
 			<div class="donate">
 				<div class="current-amount">
-					<h3>Amount Raised</h3>
-					<span class="current loading">0.00</span> of <span class="total loading">0.00</span>
+					<h3>Total Amount Raised</h3>
+					<span class="current">406.43</span>
 				</div>
 
-				<div class="ways-to-donate">
-					<h3>Ways to Donate</h3>
-					<div class="justgiving">
-						<a href='http://www.justgiving.com/matt-crouch-tpc' title='JustGiving - Sponsor me now!' target='_blank'><img src='build/images/justgiving.png' alt='JustGiving - Sponsor me now!' /></a>
-					</div>
-					
-					<span>or</span>
-					
-					<span class="text">Text <span class="message">MCTP 50</span> and <span class="amount">your amount</span> to <span class="number">70070</span></span>
-				</div>
+				<p>Thanks for all your support!</p>
 			</div>
 
 			<div class="description">
 				<img src="build/images/diabetes-uk-logo.png" alt="Diabetes UK" class="diabetes-uk-logo"/>
 				<p>Diabetes UK supports and educates millions of people in the UK affected by diabetes.</p>
-				<p>Your donation will help fund their research into the causes, prevention and hopeful cure of diabetes alongside care and support for those with the condition.</p>
-
-				<a href='http://www.justgiving.com/matt-crouch-tpc' title='JustGiving - Sponsor me now!' target='_blank' class="button">Donate Now</a>
+				<p>Your donations have helped fund their research into the causes, prevention and hopeful cure of diabetes alongside care and support for those with the condition.</p>
 			</div>
 		</div>
 	</section>

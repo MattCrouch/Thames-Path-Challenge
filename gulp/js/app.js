@@ -1,99 +1,6 @@
-function fetchDonations(fetchAutomatically) {
-	var current = $(".donate .current-amount .current");
-	var total = $(".donate .current-amount .total");
-
-	$.ajax({
-		url: "fetchdonations.php",
-		type: "GET",
-		success: function(data) {
-			current.removeClass("loading");
-			total.removeClass("loading");
-
-			var totalRaised = data.totalRaised.replace(/\,/g,'');
-			var target = data.target.replace(/\,/g,'');
-
-			var currentValue = 0;
-
-			if(current.data('amount')) {
-				currentValue = current.data('amount');
-			}
-
-			current.text(parseFloat(currentValue).toFixed(2)).data('amount', parseFloat(currentValue).toFixed(2)).data('total', parseFloat(totalRaised).toFixed(2));
-			total.text(target);
-
-			var ms = 1000;
-			var steps = 25;
-			var stepLength = ms / steps;
-			var stepAmount = totalRaised / steps;
-
-			count();
-
-			function count() {
-				var value = parseFloat(current.data('amount') + stepAmount);
-				if(value > current.data("total")) {
-					value = parseFloat(current.data("total"));
-				}
-				
-				current.data('amount', value);
-
-				current.text(value.toFixed(2));
-
-				if(value < current.data('total')) {
-					setTimeout(function(){
-						count();
-					}, stepLength);
-				}
-			}
-		},
-		error: function() {
-			//HANDLE ERROR
-			current.text("-");
-			total.text("-");
-		}
-	});
-
-	if(fetchAutomatically) {
-		setTimeout(function() {
-			fetchDonations();
-		}, 1800000); //Refetch every 30 minutes
-	}
-}
-
-function checkLive(fetchAutomatically) {
-	$.ajax({
-		url: "checklive.php",
-		type: "GET",
-		success: function(data) {
-			if(data.live) {
-				console.log("LIVE!");
-				var banner = "<div class='live-banner'>" +
-								"Follow my progress right now! <a href='live' class='button'>Watch Live</a>" +
-							"</div>";
-
-				$("body").prepend(banner);
-			} else {
-				console.log("NOT LIVE :(");
-			}
-		},
-		error: function() {
-			//Die quietly...
-		}
-	});
-
-	if(fetchAutomatically) {
-		setTimeout(function() {
-			checkLive();
-		}, 1800000); //Refetch every 30 minutes
-	}
-}
-
 $( document ).ready(function() {
 	if($("#map").length > 0) {
 		map();
-	} else {
-		//Not on live
-		fetchDonations();
-		checkLive();
 	}
 });
 
@@ -116,20 +23,6 @@ var map = function() {
 
 	var tracks = []; //Holds latest scrobbles
 	var trackHistoryLength = 5;
-
-	//Holds when the data way last updated, so we only need to pull down any changes
-	var sinceTimestamp = {
-		"waypoints": null,
-		"social": null
-	};
-
-	//Holds if/when we should be checking for new updates
-	var fetchAutomatically = true;
-	var fetchFrequency = {
-		"waypoints": 60000,
-		"social": 300000,
-		"scrobbles": 180000
-	};
 
 	var styles = [
 		{
@@ -183,8 +76,6 @@ var map = function() {
 			fetchNewWaypoints();
 			fetchNewSocial();
 			fetchNewScrobbles();
-
-			fetchDonations(fetchAutomatically);
 
 			$(".overlay a.show").click(function(e) {
 				e.preventDefault();
@@ -402,13 +293,8 @@ var map = function() {
 	function fetchNewWaypoints() {
 		$.ajax({
 			url: "fetchcoords.php",
-			data: {
-				since: sinceTimestamp.waypoints
-			},
 			type: "GET",
 			success: function(data) {
-				sinceTimestamp.waypoints = data.sinceTimestamp;
-
 				$.each(data.coordinates, function(key, coords) {
 					createNewWaypoint(coords);
 				});
@@ -418,21 +304,9 @@ var map = function() {
 				if(data.coordinates.length > 0 && routeWaypoints.length > 0) {
 					focusLiveTracking(routeWaypoints);
 				}
-
-				if(fetchAutomatically) {
-					setTimeout(function() {
-						fetchNewWaypoints();
-					}, fetchFrequency.waypoints);
-				}
 			},
 			error: function() {
 				console.log("Can't get the location at the moment :(");
-
-				if(fetchAutomatically) {
-					setTimeout(function() {
-						fetchNewWaypoints();
-					}, fetchFrequency.waypoints);
-				}
 			}
 		});
 	}
@@ -440,31 +314,14 @@ var map = function() {
 	function fetchNewSocial() {
 		$.ajax({
 			url: "fetchsocial.php",
-			data: {
-				since: sinceTimestamp.social
-			},
 			type: "GET",
 			success: function(data) {
-				sinceTimestamp.social = data.sinceTimestamp;
-
 				$.each(data.posts, function(key, post) {
 					createNewSocial(post);
 				});
-
-				if(fetchAutomatically) {
-					setTimeout(function() {
-						fetchNewSocial();
-					}, fetchFrequency.social);
-				}
 			},
 			error: function() {
 				console.log("Can't get social feeds :(");
-
-				if(fetchAutomatically) {
-					setTimeout(function() {
-						fetchNewSocial();
-					}, fetchFrequency.social);
-				}
 			}
 		});
 	}
@@ -472,13 +329,8 @@ var map = function() {
 	function fetchNewScrobbles() {
 		$.ajax({
 			url: "fetchlastfm.php",
-			data: {
-				since: sinceTimestamp.lastfm
-			},
 			type: "GET",
 			success: function(data) {
-				sinceTimestamp.lastfm = data.sinceTimestamp;
-
 				$.each(data.tracks, function(key, track) {
 					addTrack(track);
 				});
@@ -486,21 +338,9 @@ var map = function() {
 				if(data.tracks.length > 0) {
 					animateNewTrack(data.tracks[0]);
 				}
-
-				if(fetchAutomatically) {
-					setTimeout(function() {
-						fetchNewSocial();
-					}, fetchFrequency.social);
-				}
 			},
 			error: function() {
 				console.log("Can't get scrobbles :(");
-
-				if(fetchAutomatically) {
-					setTimeout(function() {
-						fetchNewScrobbles();
-					}, fetchFrequency.scrobbles);
-				}
 			}
 		});
 	}
